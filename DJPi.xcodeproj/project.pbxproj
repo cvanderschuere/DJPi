@@ -18,8 +18,51 @@
 		835509B216B22AE00028F2D5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 835509B116B22AE00028F2D5 /* Default-568h@2x.png */; };
 		835509B516B22AE00028F2D5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835509B316B22AE00028F2D5 /* MainStoryboard_iPhone.storyboard */; };
 		835509B816B22AE00028F2D5 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835509B616B22AE00028F2D5 /* MainStoryboard_iPad.storyboard */; };
-		835509BB16B22AE00028F2D5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835509BA16B22AE00028F2D5 /* ViewController.m */; };
+		835509D516B230540028F2D5 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 835509CC16B22F210028F2D5 /* libRestKit.a */; };
+		835509D716B230630028F2D5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 835509D616B230630028F2D5 /* CFNetwork.framework */; };
+		835509D916B230690028F2D5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 835509D816B230690028F2D5 /* CoreData.framework */; };
+		835509DB16B230730028F2D5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 835509DA16B230730028F2D5 /* MobileCoreServices.framework */; };
+		835509DD16B2307B0028F2D5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 835509DC16B2307B0028F2D5 /* Security.framework */; };
+		835509DF16B230840028F2D5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 835509DE16B230840028F2D5 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		835509CB16B22F210028F2D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 835509C116B22F200028F2D5 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160D1614564E810060A5C5;
+			remoteInfo = RestKit;
+		};
+		835509CD16B22F210028F2D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 835509C116B22F200028F2D5 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160D2614564E820060A5C5;
+			remoteInfo = RestKitTests;
+		};
+		835509CF16B22F210028F2D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 835509C116B22F200028F2D5 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160E62145651060060A5C5;
+			remoteInfo = RestKitFramework;
+		};
+		835509D116B22F210028F2D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 835509C116B22F200028F2D5 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160E78145651060060A5C5;
+			remoteInfo = RestKitFrameworkTests;
+		};
+		835509D316B230320028F2D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 835509C116B22F200028F2D5 /* RestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 25160D1514564E810060A5C5;
+			remoteInfo = RestKit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8355099716B22AE00028F2D5 /* DJPi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJPi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,8 +80,12 @@
 		835509B116B22AE00028F2D5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		835509B416B22AE00028F2D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		835509B716B22AE00028F2D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		835509B916B22AE00028F2D5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		835509BA16B22AE00028F2D5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		835509C116B22F200028F2D5 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
+		835509D616B230630028F2D5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		835509D816B230690028F2D5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		835509DA16B230730028F2D5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		835509DC16B2307B0028F2D5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		835509DE16B230840028F2D5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +93,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				835509DF16B230840028F2D5 /* SystemConfiguration.framework in Frameworks */,
+				835509DD16B2307B0028F2D5 /* Security.framework in Frameworks */,
+				835509DB16B230730028F2D5 /* MobileCoreServices.framework in Frameworks */,
+				835509D916B230690028F2D5 /* CoreData.framework in Frameworks */,
+				835509D716B230630028F2D5 /* CFNetwork.framework in Frameworks */,
+				835509D516B230540028F2D5 /* libRestKit.a in Frameworks */,
 				8355099C16B22AE00028F2D5 /* UIKit.framework in Frameworks */,
 				8355099E16B22AE00028F2D5 /* Foundation.framework in Frameworks */,
 				835509A016B22AE00028F2D5 /* CoreGraphics.framework in Frameworks */,
@@ -75,6 +128,12 @@
 		8355099A16B22AE00028F2D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				835509DE16B230840028F2D5 /* SystemConfiguration.framework */,
+				835509DC16B2307B0028F2D5 /* Security.framework */,
+				835509DA16B230730028F2D5 /* MobileCoreServices.framework */,
+				835509D816B230690028F2D5 /* CoreData.framework */,
+				835509D616B230630028F2D5 /* CFNetwork.framework */,
+				835509C116B22F200028F2D5 /* RestKit.xcodeproj */,
 				8355099B16B22AE00028F2D5 /* UIKit.framework */,
 				8355099D16B22AE00028F2D5 /* Foundation.framework */,
 				8355099F16B22AE00028F2D5 /* CoreGraphics.framework */,
@@ -89,8 +148,6 @@
 				835509AB16B22AE00028F2D5 /* AppDelegate.m */,
 				835509B316B22AE00028F2D5 /* MainStoryboard_iPhone.storyboard */,
 				835509B616B22AE00028F2D5 /* MainStoryboard_iPad.storyboard */,
-				835509B916B22AE00028F2D5 /* ViewController.h */,
-				835509BA16B22AE00028F2D5 /* ViewController.m */,
 				835509A216B22AE00028F2D5 /* Supporting Files */,
 			);
 			path = DJPi;
@@ -110,6 +167,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		835509C216B22F200028F2D5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				835509CC16B22F210028F2D5 /* libRestKit.a */,
+				835509CE16B22F210028F2D5 /* RestKitTests.octest */,
+				835509D016B22F210028F2D5 /* RestKit.framework */,
+				835509D216B22F210028F2D5 /* RestKitFrameworkTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -124,6 +192,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				835509D416B230320028F2D5 /* PBXTargetDependency */,
 			);
 			name = DJPi;
 			productName = DJPi;
@@ -149,12 +218,49 @@
 			mainGroup = 8355098C16B22AE00028F2D5;
 			productRefGroup = 8355099816B22AE00028F2D5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 835509C216B22F200028F2D5 /* Products */;
+					ProjectRef = 835509C116B22F200028F2D5 /* RestKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8355099616B22AE00028F2D5 /* DJPi */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		835509CC16B22F210028F2D5 /* libRestKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKit.a;
+			remoteRef = 835509CB16B22F210028F2D5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		835509CE16B22F210028F2D5 /* RestKitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitTests.octest;
+			remoteRef = 835509CD16B22F210028F2D5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		835509D016B22F210028F2D5 /* RestKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RestKit.framework;
+			remoteRef = 835509CF16B22F210028F2D5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		835509D216B22F210028F2D5 /* RestKitFrameworkTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitFrameworkTests.octest;
+			remoteRef = 835509D116B22F210028F2D5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8355099516B22AE00028F2D5 /* Resources */ = {
@@ -179,11 +285,18 @@
 			files = (
 				835509A816B22AE00028F2D5 /* main.m in Sources */,
 				835509AC16B22AE00028F2D5 /* AppDelegate.m in Sources */,
-				835509BB16B22AE00028F2D5 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		835509D416B230320028F2D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RestKit;
+			targetProxy = 835509D316B230320028F2D5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		835509A416B22AE00028F2D5 /* InfoPlist.strings */ = {
@@ -235,6 +348,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -257,6 +371,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
@@ -271,6 +386,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DJPi/DJPi-Prefix.pch";
 				INFOPLIST_FILE = "DJPi/DJPi-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -282,6 +401,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DJPi/DJPi-Prefix.pch";
 				INFOPLIST_FILE = "DJPi/DJPi-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
