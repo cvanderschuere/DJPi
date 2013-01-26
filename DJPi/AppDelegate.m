@@ -7,12 +7,36 @@
 //
 
 #import "AppDelegate.h"
+#import "Artist.h"
+#import "Album.h"
+#import "Song.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // Initialize managed object store
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
+    NSError *error = nil;
+    BOOL success = RKEnsureDirectoryExistsAtPath(RKApplicationDataDirectory(), &error);
+    if (! success) {
+        RKLogError(@"Failed to create Application Data Directory at path '%@': %@", RKApplicationDataDirectory(), error);
+    }
+    NSString *path = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"Store.sqlite"];
+    NSPersistentStore *persistentStore = [managedObjectStore addSQLitePersistentStoreAtPath:path fromSeedDatabaseAtPath:nil withConfiguration:nil options:nil error:&error];
+    if (! persistentStore) {
+        RKLogError(@"Failed adding persistent store at path '%@': %@", path, error);
+    }
+    [managedObjectStore createManagedObjectContexts];    
+    [RKManagedObjectStore setDefaultStore:managedObjectStore];
+
+    //RKLogConfigureByName("RestKit/CoreData", RKLogLevelTrace);
+    
+    //Load all information initially
+    self.background = [[NSOperationQueue alloc] init];
     return YES;
 }
 							
@@ -36,11 +60,102 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    //Update information
+    [self.background addOperation:[self allArtistsRequestOperation]];
+    [self.background addOperation:[self allAlbumsRequestOperation]];
+    [self.background addOperation:[self allSongsRequestOperation]];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Load Information
+-(RKManagedObjectRequestOperation*) allArtistsRequestOperation{
+    //Load all artists
+    RKEntityMapping *artistMapping = [RKEntityMapping mappingForEntityForName:@"Artist" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
+    [artistMapping addAttributeMappingsFromDictionary:@{@"artist":@"title", @"artistid":@"artistID"}];
+    
+    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:artistMapping pathPattern:nil keyPath:@"result.artists" statusCodes:statusCodes];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    request.HTTPMethod = @"POST";
+    NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"AudioLibrary.GetArtists",@"id": @1};
+    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:nil];
+    
+    RKManagedObjectRequestOperation *operation = [[RKManagedObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
+    operation.managedObjectContext = [RKManagedObjectStore defaultStore].mainQueueManagedObjectContext;
+    operation.managedObjectCache = [RKManagedObjectStore defaultStore].managedObjectCache;
+    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+        Artist *artist = [result firstObject];
+        NSLog(@"Mapped the artist: %@", artist);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Failed with error: %@", [error localizedDescription]);
+    }];
+    return operation;
+}
+-(RKManagedObjectRequestOperation*) allAlbumsRequestOperation{
+    //Load all albums
+    RKEntityMapping *albumMapping = [RKEntityMapping mappingForEntityForName:@"Album" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
+    [albumMapping addAttributeMappingsFromDictionary:@{@"label":@"title",@"albumid":@"albumID",@"artistid":@"artistIDs"}];
+    //Connect relationship
+    NSRelationshipDescription *artists = [[NSEntityDescription entityForName:@"Album" inManagedObjectContext:[RKManagedObjectStore defaultStore].mainQueueManagedObjectContext] relationshipsByName][@"artists"]; // To many relationship for the `Artist` entity
+    RKConnectionDescription *connection = [[RKConnectionDescription alloc] initWithRelationship:artists attributes:@{@"artistIDs":@"artistID"}];
+    [albumMapping addConnection:connection];
+    
+    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:albumMapping pathPattern:nil keyPath:@"result.albums" statusCodes:statusCodes];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    request.HTTPMethod = @"POST";
+    NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"AudioLibrary.GetAlbums",@"params":@{@"properties":@[@"artistid"]},@"id": @1};
+    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:nil];
+    
+    RKManagedObjectRequestOperation *operation = [[RKManagedObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
+    operation.managedObjectContext = [RKManagedObjectStore defaultStore].mainQueueManagedObjectContext;
+    operation.managedObjectCache = [RKManagedObjectStore defaultStore].managedObjectCache;
+    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+        Album *album = [result firstObject];
+        NSLog(@"Mapped the album: %@", album);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Failed with error: %@", [error localizedDescription]);
+    }];
+    return operation;
+}
+-(RKManagedObjectRequestOperation*) allSongsRequestOperation{
+    //Load all songs
+    RKEntityMapping *songMapping = [RKEntityMapping mappingForEntityForName:@"Song" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
+    [songMapping addAttributeMappingsFromDictionary:@{@"label":@"title", @"albumid":@"albumID",@"songid":@"songID"}];
+
+    //Map relationship
+    NSRelationshipDescription *album = [[NSEntityDescription entityForName:@"Song" inManagedObjectContext:[RKManagedObjectStore defaultStore].mainQueueManagedObjectContext] relationshipsByName][@"album"]; // To many relationship for the `Artist` entity
+    RKConnectionDescription *connection = [[RKConnectionDescription alloc] initWithRelationship:album attributes:@{@"albumID":@"albumID"}];
+    [songMapping addConnection:connection];
+
+    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:songMapping pathPattern:nil keyPath:@"result.songs" statusCodes:statusCodes];
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    request.HTTPMethod = @"POST";
+    NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"AudioLibrary.GetSongs",@"params": @{ @"properties":@[@"albumid"]}, @"id": @1};
+    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:nil];
+
+    RKManagedObjectRequestOperation *operation = [[RKManagedObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
+    operation.managedObjectContext = [RKManagedObjectStore defaultStore].mainQueueManagedObjectContext;
+    operation.managedObjectCache = [RKManagedObjectStore defaultStore].managedObjectCache;
+    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+        Song *song = [result firstObject];
+        NSLog(@"Mapped the song: %@", song);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Failed with error: %@", [error localizedDescription]);
+    }];
+    return operation;
 }
 
 @end
