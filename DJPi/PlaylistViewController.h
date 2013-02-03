@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlaylistViewController : UIViewController
+@interface PlaylistViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
+- (IBAction)playPauseHit:(id)sender;
+@property (weak, nonatomic) IBOutlet UICollectionView *playlistCollectionView;
 
 @end

@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Playlist-->
+        <!--Playlist View Controller - Playlist-->
         <scene sceneID="1eP-Py-Jj4">
             <objects>
-                <viewController id="r3f-1V-OKM" sceneMemberID="viewController">
+                <viewController id="r3f-1V-OKM" customClass="PlaylistViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ieb-6r-d9Z">
                         <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -21,12 +21,12 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playPauseHit:" destination="r3f-1V-OKM" eventType="touchUpInside" id="s67-8S-FEw"/>
+                                </connections>
                             </button>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6CR-KO-Y7Z">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="219" id="nyS-d8-NO1"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JZI-Aa-V5P">
                                     <size key="itemSize" width="202" height="202"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -44,19 +44,27 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="r3f-1V-OKM" id="mlW-Hf-8ul"/>
+                                    <outlet property="delegate" destination="r3f-1V-OKM" id="O0k-5M-8ZA"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6CR-KO-Y7Z" firstAttribute="top" secondItem="ieb-6r-d9Z" secondAttribute="top" type="user" id="10C-pZ-eS0"/>
-                            <constraint firstAttribute="bottom" secondItem="P6O-lb-cE3" secondAttribute="bottom" constant="20" symbolic="YES" type="user" id="6Zi-9y-xqj"/>
                             <constraint firstItem="6CR-KO-Y7Z" firstAttribute="leading" secondItem="ieb-6r-d9Z" secondAttribute="leading" type="default" id="A01-YY-bC7"/>
                             <constraint firstItem="6CR-KO-Y7Z" firstAttribute="trailing" secondItem="ieb-6r-d9Z" secondAttribute="trailing" type="default" id="Hkc-Tv-2ZY"/>
-                            <constraint firstItem="P6O-lb-cE3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6CR-KO-Y7Z" secondAttribute="bottom" priority="706" type="user" id="kNG-nX-Yth"/>
+                            <constraint firstItem="6CR-KO-Y7Z" firstAttribute="top" secondItem="ieb-6r-d9Z" secondAttribute="top" constant="20" symbolic="YES" type="default" id="QNi-d8-obu"/>
+                            <constraint firstItem="P6O-lb-cE3" firstAttribute="top" secondItem="6CR-KO-Y7Z" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="bdJ-Qy-Rbg"/>
                             <constraint firstItem="P6O-lb-cE3" firstAttribute="centerX" secondItem="6CR-KO-Y7Z" secondAttribute="centerX" type="default" id="nST-tu-EFM"/>
+                            <constraint firstAttribute="bottom" secondItem="P6O-lb-cE3" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="nw5-Lf-1UZ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Playlist" id="Qbv-WP-zNr"/>
+                    <connections>
+                        <outlet property="playPauseButton" destination="P6O-lb-cE3" id="i2y-KC-FNr"/>
+                        <outlet property="playlistCollectionView" destination="6CR-KO-Y7Z" id="eyI-wf-MfF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eb2-Si-PzX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -285,6 +293,14 @@
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PlaylistViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaylistViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="playPauseHit:"/>
+                <relationship kind="outlet" name="playPauseButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="playlistCollectionView" candidateClass="UICollectionView"/>
+            </relationships>
         </class>
         <class className="SongsTableViewController" superclassName="BaseCoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SongsTableViewController.h"/>

@@ -17,6 +17,10 @@
 {
     // Override point for customization after application launch.
     
+    //Init RPC Client
+    AFJSONRPCClient *client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
+    [AFJSONRPCClient setSharedClient:client];
+    
     // Initialize managed object store
     NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
@@ -65,6 +69,31 @@
     [self.background addOperation:[self allArtistsRequestOperation]];
     [self.background addOperation:[self allAlbumsRequestOperation]];
     [self.background addOperation:[self allSongsRequestOperation]];
+    
+    //Check if playlist has been opened
+    //Get active players
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    request.HTTPMethod = @"POST";
+    NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"Player.GetActivePlayers",@"id": @1};
+    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:nil];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse* response, NSData*json,NSError*error){
+        //Serialize json
+        id object = [NSJSONSerialization JSONObjectWithData:json options:0 error:NULL];
+        if ([object isKindOfClass:[NSDictionary class]]) {
+            NSArray *result = [object objectForKey:@"result"];
+            if (result.count==0) {
+                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
+                [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                request.HTTPMethod = @"POST";
+                NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"Player.Open",@"params":@{@"playlistid":@0},@"id": @1};
+                request.HTTPBody = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:nil];
+                [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:NULL];
+            }
+        }
+    }];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

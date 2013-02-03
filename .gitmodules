@@ -1,3 +1,6 @@
 [submodule "RestKit"]
 	path = RestKit
 	url = git://github.com/RestKit/RestKit.git
+[submodule "AFJSONRPCClient"]
+	path = AFJSONRPCClient
+	url = git@github.com:AFNetworking/AFJSONRPCClient.git
