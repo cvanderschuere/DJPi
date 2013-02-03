@@ -35,16 +35,18 @@
 }
 
 - (IBAction)playPauseHit:(id)sender {
-    [[AFJSONRPCClient sharedClient] invokeMethod:@"Player.GetActivePlayers" withParameters:[NSArray array] requestId:@1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([responseObject isKindOfClass:[NSArray class]]) {
-            if ([responseObject count]>0) {
-                [[AFJSONRPCClient sharedClient] invokeMethod:@"Player.PlayPause" withParameters:@{@"playerid": [[responseObject objectAtIndex:0] objectForKey:@"playerid"]} requestId:@1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    [self.playPauseButton setTitle:[self.playPauseButton.titleLabel.text isEqualToString:@"Play"]?@"Pause":@"Play" forState:UIControlStateNormal];
-                } failure:NULL];
+    [[AFJSONRPCClient sharedClient] invokeMethod:@"Player.PlayPause" withParameters:@{@"playerid":@0} requestId:@1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            //Play pause suceeded
+            [self.playPauseButton setTitle:[self.playPauseButton.titleLabel.text isEqualToString:@"Play"]?@"Pause":@"Play" forState:UIControlStateNormal];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            if (error.code == -32100) {
+                //Failed to execute method...should open new player
+                [[AFJSONRPCClient sharedClient] invokeMethod:@"Player.Open" withParameters:@{@"item":@{@"playlistid": @0}} requestId:@1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [self.playPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"Fail");
+                }];
             }
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
     }];
 }
 
@@ -60,7 +62,7 @@
 }
 #pragma mark - UICollectionView Delegate
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGSizeMake(50, 50);
+    return CGSizeMake(50, 50);
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)sectio{
     return 10.0;

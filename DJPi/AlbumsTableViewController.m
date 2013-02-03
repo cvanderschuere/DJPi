@@ -31,18 +31,25 @@
 	// Do any additional setup after loading the view.
     
     //Setup FRC
-    NSFetchRequest *artistFetch = [NSFetchRequest fetchRequestWithEntityName:@"Album"];
-    artistFetch.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title.initialCharacter" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+    NSFetchRequest *albumFetch = [NSFetchRequest fetchRequestWithEntityName:@"Album"];
+    albumFetch.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title.initialCharacter" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
     if (self.selectedArtist) {
-        artistFetch.predicate = [NSPredicate predicateWithFormat:@"self.artists CONTAINS %@",self.selectedArtist];
+        albumFetch.predicate = [NSPredicate predicateWithFormat:@"songs.@count>0 AND self.artists CONTAINS %@",self.selectedArtist];
         self.title = self.selectedArtist.title;
     }
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:artistFetch managedObjectContext:[RKManagedObjectStore defaultStore].mainQueueManagedObjectContext sectionNameKeyPath:@"title.initialCharacter" cacheName:nil];
+    else{
+        albumFetch.predicate = [NSPredicate predicateWithFormat:@"songs.@count>0"];
+    }
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:albumFetch managedObjectContext:[RKManagedObjectStore defaultStore].mainQueueManagedObjectContext sectionNameKeyPath:@"title.initialCharacter" cacheName:nil];
 }
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     [self performFetch];
+    if (self.selectedArtist) {
+        //Pull for new albums
+    
+    }
 }
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([sender isKindOfClass:[UITableViewCell class]]) {

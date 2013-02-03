@@ -51,22 +51,8 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //Queue selected song
     Song *song = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    request.HTTPMethod = @"POST";
-    NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"Playlist.Add",@"params":@{@"playlistid":@0,@"item":@{@"songid":song.songID}},@"id": @1};
-    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:nil];
-
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData*data,NSError*error){
-        if (error) {
-            NSLog(@"Playlist.Add Error: %@",error.localizedFailureReason);
-        }
-        else{
-            NSLog(@"Response:%@",[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL]);
-        }
-    }];
-    
+    [[AFJSONRPCClient sharedClient] invokeMethod:@"Playlist.Add" withParameters:@{@"playlistid":@0,@"item":@{@"songid":song.songID}} requestId:@1 success:NULL failure:NULL];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
