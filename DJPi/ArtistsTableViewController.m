@@ -33,8 +33,9 @@
     //Setup FRC
     NSFetchRequest *artistFetch = [NSFetchRequest fetchRequestWithEntityName:@"Artist"];
     artistFetch.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title.initialCharacter" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-    artistFetch.predicate = [NSPredicate predicateWithFormat:@"albums.@count >0"];
+    //artistFetch.predicate = [NSPredicate predicateWithFormat:@"albums.@count >0"];
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:artistFetch managedObjectContext:[RKManagedObjectStore defaultStore].mainQueueManagedObjectContext sectionNameKeyPath:@"title.initialCharacter" cacheName:nil];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated{

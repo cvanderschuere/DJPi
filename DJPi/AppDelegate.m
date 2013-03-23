@@ -10,16 +10,43 @@
 #import "Artist.h"
 #import "Album.h"
 #import "Song.h"
+#include <arpa/inet.h>
+
+#define serviceType @"_xbmc-jsonrpc-h._tcp"
+#define domainName @"local"
+#define DISCOVER_TIMEOUT 5.0f
+
+@interface AppDelegate()
+
+@property (nonatomic,strong) NSNetService* service;
+@property (nonatomic, strong) NSNetServiceBrowser *servicesBrowser;
+
+@end
 
 @implementation AppDelegate
+
+- (void) setCurrentServer:(Server *)currentServer{
+    if (currentServer && ![currentServer isEqual:_currentServer]) {
+        _currentServer = currentServer;
+        
+        //Update server dependent values
+        AFJSONRPCClient *client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:currentServer.serverString]];
+        [AFJSONRPCClient setSharedClient:client];
+        
+        [self updateInformation]; //Refresh info
+    }
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     
-    //Init RPC Client
-    AFJSONRPCClient *client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
-    [AFJSONRPCClient setSharedClient:client];
+    self.currentServer = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] dataForKey:@"lastServer"]];
+    
+    //Browse Services
+    self.servicesBrowser = [[NSNetServiceBrowser alloc]init];
+    self.servicesBrowser.delegate = self;
+    [self.servicesBrowser searchForServicesOfType:serviceType inDomain:domainName];    
     
     // Initialize managed object store
     NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
@@ -64,36 +91,8 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
-    //Update information
-    [self.background addOperation:[self allArtistsRequestOperation]];
-    [self.background addOperation:[self allAlbumsRequestOperation]];
-    [self.background addOperation:[self allSongsRequestOperation]];
-    
-    //Check if playlist has been opened
-    //Get active players
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    request.HTTPMethod = @"POST";
-    NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"Player.GetActivePlayers",@"id": @1};
-    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:nil];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse* response, NSData*json,NSError*error){
-        //Serialize json
-        id object = [NSJSONSerialization JSONObjectWithData:json options:0 error:NULL];
-        if ([object isKindOfClass:[NSDictionary class]]) {
-            NSArray *result = [object objectForKey:@"result"];
-            if (result.count==0) {
-                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
-                [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-                request.HTTPMethod = @"POST";
-                NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"Player.Open",@"params":@{@"playlistid":@0},@"id": @1};
-                request.HTTPBody = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:nil];
-                [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:NULL];
-            }
-        }
-    }];
-
+    [self updateInformation];
+        
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -101,8 +100,80 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - NSNetServiceBrowser Delegate
+-(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing{
+    NSLog(@"Net Service: %@ %d",aNetService,moreComing);
+    
+    //Resolve
+    self.service = aNetService;
+    self.service.delegate = self;
+    [self.service resolveWithTimeout:DISCOVER_TIMEOUT];
+    
+    //Stop discovery...only allow first service
+    [aNetServiceBrowser stop];
+}
+#pragma mark - NSNetService Delegate
+-(void) netServiceDidResolveAddress:(NSNetService *)sender{
+    NSLog(@"Net Service: %@",sender);
+    
+    NSData *data = sender.addresses[0];
+
+    char addressBuffer[100];
+    struct sockaddr_in* socketAddress = (struct sockaddr_in*) [data bytes];
+    int sockFamily = socketAddress->sin_family;
+    if (sockFamily == AF_INET ) {//|| sockFamily == AF_INET6 should be considered
+        const char* addressStr = inet_ntop(sockFamily,
+                                           &(socketAddress->sin_addr), addressBuffer,
+                                           sizeof(addressBuffer));
+        int port = ntohs(socketAddress->sin_port);
+        if (addressStr && port){
+            self.currentServer = [Server serverWithAddress:[NSString stringWithUTF8String:addressStr] Port:port];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.currentServer] forKey:@"lastServer"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    }
+}
+-(void)netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict{
+    NSLog(@"Error: %@",errorDict);
+}
 #pragma mark - Load Information
--(RKManagedObjectRequestOperation*) allArtistsRequestOperation{
+- (void) updateInformation{
+    if (self.currentServer) {
+        //Update information
+        [self.background addOperation:[self allArtistsRequestOperation]];
+        [self.background addOperation:[self allAlbumsRequestOperation]];
+        [self.background addOperation:[self allSongsRequestOperation]];
+        
+        //Check if playlist has been opened
+        //Get active players
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.currentServer.serverString]];
+        [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        request.HTTPMethod = @"POST";
+        NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"Player.GetActivePlayers",@"id": @1};
+        request.HTTPBody = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:nil];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse* response, NSData*json,NSError*error){
+            //Serialize json
+            id object = [NSJSONSerialization JSONObjectWithData:json options:0 error:NULL];
+            if ([object isKindOfClass:[NSDictionary class]]) {
+                NSArray *result = [object objectForKey:@"result"];
+                if (result.count==0) {
+                    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.currentServer.serverString]];
+                    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                    request.HTTPMethod = @"POST";
+                    NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"Player.Open",@"params":@{@"playlistid":@0},@"id": @1};
+                    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:nil];
+                    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:NULL];
+                }
+            }
+        }];
+    }
+
+}
+- (RKManagedObjectRequestOperation*) allArtistsRequestOperation{
+    if (!self.currentServer)
+        return nil;
+    
     //Load all artists
     RKEntityMapping *artistMapping = [RKEntityMapping mappingForEntityForName:@"Artist" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
     [artistMapping addAttributeMappingsFromDictionary:@{@"artist":@"title", @"artistid":@"artistID"}];
@@ -110,7 +181,7 @@
     NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:artistMapping pathPattern:nil keyPath:@"result.artists" statusCodes:statusCodes];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.currentServer.serverString]];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     request.HTTPMethod = @"POST";
     NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"AudioLibrary.GetArtists",@"id": @1};
@@ -128,6 +199,9 @@
     return operation;
 }
 -(RKManagedObjectRequestOperation*) allAlbumsRequestOperation{
+    if (!self.currentServer)
+        return nil;
+    
     //Load all albums
     RKEntityMapping *albumMapping = [RKEntityMapping mappingForEntityForName:@"Album" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
     [albumMapping addAttributeMappingsFromDictionary:@{@"label":@"title",@"albumid":@"albumID",@"artistid":@"artistIDs"}];
@@ -139,7 +213,7 @@
     NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:albumMapping pathPattern:nil keyPath:@"result.albums" statusCodes:statusCodes];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.currentServer.serverString]];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     request.HTTPMethod = @"POST";
     NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"AudioLibrary.GetAlbums",@"params":@{@"properties":@[@"artistid"]},@"id": @1};
@@ -157,6 +231,9 @@
     return operation;
 }
 -(RKManagedObjectRequestOperation*) allSongsRequestOperation{
+    if (!self.currentServer)
+        return nil;
+    
     //Load all songs
     RKEntityMapping *songMapping = [RKEntityMapping mappingForEntityForName:@"Song" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
     [songMapping addAttributeMappingsFromDictionary:@{@"label":@"title", @"albumid":@"albumID",@"songid":@"songID"}];
@@ -169,7 +246,7 @@
     NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:songMapping pathPattern:nil keyPath:@"result.songs" statusCodes:statusCodes];
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.111:80/jsonrpc"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.currentServer.serverString]];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     request.HTTPMethod = @"POST";
     NSDictionary *jsonDict = @{@"jsonrpc":@"2.0",@"method": @"AudioLibrary.GetSongs",@"params": @{ @"properties":@[@"albumid"]}, @"id": @1};

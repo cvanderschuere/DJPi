@@ -7,7 +7,10 @@
 //
 
 #import "CoreDataTableViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
 
-@interface BaseCoreDataTableViewController : CoreDataTableViewController
+@interface BaseCoreDataTableViewController : CoreDataTableViewController<MPMediaPickerControllerDelegate>
+
+- (IBAction)addMediaItems:(id)sender;
 
 @end

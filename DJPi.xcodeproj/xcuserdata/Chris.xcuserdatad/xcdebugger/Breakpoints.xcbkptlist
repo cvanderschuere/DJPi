@@ -72,13 +72,13 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "DJPi/AppDelegate.m"
-         timestampString = "381554074.568183"
+         filePath = "DJPi/BaseCoreDataTableViewController.m"
+         timestampString = "381574985.494883"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "87"
-         endingLineNumber = "87"
-         landmarkName = "-applicationDidBecomeActive:"
+         startingLineNumber = "52"
+         endingLineNumber = "52"
+         landmarkName = "-mediaPicker:didPickMediaItems:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

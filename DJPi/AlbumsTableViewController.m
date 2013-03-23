@@ -37,9 +37,6 @@
         albumFetch.predicate = [NSPredicate predicateWithFormat:@"songs.@count>0 AND self.artists CONTAINS %@",self.selectedArtist];
         self.title = self.selectedArtist.title;
     }
-    else{
-        albumFetch.predicate = [NSPredicate predicateWithFormat:@"songs.@count>0"];
-    }
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:albumFetch managedObjectContext:[RKManagedObjectStore defaultStore].mainQueueManagedObjectContext sectionNameKeyPath:@"title.initialCharacter" cacheName:nil];
 }
 -(void) viewWillAppear:(BOOL)animated{

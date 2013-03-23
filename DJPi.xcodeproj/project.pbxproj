@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8319A8D616E1D65D00706FC5 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 8319A8D516E1D65D00706FC5 /* Server.m */; };
 		83347F0716B45E92003211F0 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83347F0616B45E92003211F0 /* PlaylistViewController.m */; };
 		8343156716BE09F200B4BD12 /* AFJSONRPCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343156616BE09F200B4BD12 /* AFJSONRPCClient.m */; };
 		8355099C16B22AE00028F2D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8355099B16B22AE00028F2D5 /* UIKit.framework */; };
@@ -38,6 +39,8 @@
 		83B858BA16B35B8F007A3258 /* NSString+InitialCharaterGrouping.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B858B916B35B8F007A3258 /* NSString+InitialCharaterGrouping.m */; };
 		83B858C016B369A8007A3258 /* AlbumsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B858BF16B369A8007A3258 /* AlbumsTableViewController.m */; };
 		83B858C316B399EF007A3258 /* SongsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B858C216B399EF007A3258 /* SongsTableViewController.m */; };
+		83E7058716BE2A8A00918C13 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E7058616BE2A8A00918C13 /* MediaPlayer.framework */; };
+		83E7058D16BE5B0900918C13 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E7058C16BE5B0900918C13 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8319A8D416E1D65D00706FC5 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		8319A8D516E1D65D00706FC5 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		83347F0516B45E91003211F0 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
 		83347F0616B45E92003211F0 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
 		8343156516BE09F200B4BD12 /* AFJSONRPCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRPCClient.h; sourceTree = "<group>"; };
@@ -129,6 +134,8 @@
 		83B858BF16B369A8007A3258 /* AlbumsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumsTableViewController.m; sourceTree = "<group>"; };
 		83B858C116B399EE007A3258 /* SongsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongsTableViewController.h; sourceTree = "<group>"; };
 		83B858C216B399EF007A3258 /* SongsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongsTableViewController.m; sourceTree = "<group>"; };
+		83E7058616BE2A8A00918C13 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		83E7058C16BE5B0900918C13 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +143,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83E7058D16BE5B0900918C13 /* AVFoundation.framework in Frameworks */,
+				83E7058716BE2A8A00918C13 /* MediaPlayer.framework in Frameworks */,
 				835509DF16B230840028F2D5 /* SystemConfiguration.framework in Frameworks */,
 				835509DD16B2307B0028F2D5 /* Security.framework in Frameworks */,
 				835509DB16B230730028F2D5 /* MobileCoreServices.framework in Frameworks */,
@@ -181,6 +190,8 @@
 		8355099A16B22AE00028F2D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83E7058C16BE5B0900918C13 /* AVFoundation.framework */,
+				83E7058616BE2A8A00918C13 /* MediaPlayer.framework */,
 				835509DE16B230840028F2D5 /* SystemConfiguration.framework */,
 				835509DC16B2307B0028F2D5 /* Security.framework */,
 				835509DA16B230730028F2D5 /* MobileCoreServices.framework */,
@@ -255,6 +266,8 @@
 				83B858A016B26F63007A3258 /* Song.m */,
 				83B8589C16B26F63007A3258 /* Artist.h */,
 				83B8589D16B26F63007A3258 /* Artist.m */,
+				8319A8D416E1D65D00706FC5 /* Server.h */,
+				8319A8D516E1D65D00706FC5 /* Server.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -396,6 +409,7 @@
 				8385816C16B39CFB00D0F5B0 /* BaseCoreDataTableViewController.m in Sources */,
 				83347F0716B45E92003211F0 /* PlaylistViewController.m in Sources */,
 				8343156716BE09F200B4BD12 /* AFJSONRPCClient.m in Sources */,
+				8319A8D616E1D65D00706FC5 /* Server.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +508,7 @@
 		835509BF16B22AE00028F2D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: C D. VANDERSCHUERE (P4597GHA44)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DJPi/DJPi-Prefix.pch";
 				INFOPLIST_FILE = "DJPi/DJPi-Info.plist";
@@ -502,6 +517,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5E0295F2-9424-407A-BD32-F9D026BBC873";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -509,6 +525,7 @@
 		835509C016B22AE00028F2D5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: C D. VANDERSCHUERE (P4597GHA44)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DJPi/DJPi-Prefix.pch";
 				INFOPLIST_FILE = "DJPi/DJPi-Info.plist";
@@ -517,6 +534,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5E0295F2-9424-407A-BD32-F9D026BBC873";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
