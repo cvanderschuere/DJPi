@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface Server : NSObject <NSCoding>
 
 @property (nonatomic,strong) NSString* address;

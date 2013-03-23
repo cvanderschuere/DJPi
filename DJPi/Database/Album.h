@@ -11,7 +11,7 @@
 #import "SDWebImageDownloaderDelegate.h"
 #import "NSString+InitialCharaterGrouping.h"
 #import "Artist.h"
-#import <RestKit/NSManagedObject+RKAdditions.h>
+#import <NSManagedObject+RKAdditions.h>
 
 
 @class Artist, Song;

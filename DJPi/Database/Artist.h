@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "NSString+InitialCharaterGrouping.h"
-#import <RestKit/NSManagedObject+RKAdditions.h>
+#import <NSManagedObject+RKAdditions.h>
 
 
 @interface Artist : NSManagedObject
