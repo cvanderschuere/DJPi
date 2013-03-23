@@ -1,0 +1,5 @@
+platform :ios, '5.0'
+
+pod 'AFJSONRPCClient', '0.3.1'
+
+pod 'RestKit', '~> 0.20.0'
