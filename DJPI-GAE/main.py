@@ -44,16 +44,17 @@ def to_dict(model):
 class RestEngine(webapp.RequestHandler):
 	
 	def get(self):
+		#Must pass username
+		userName = self.request.headers['username']
+		if userName == '':
+			self.response.set_status(400)
+			return #return nothing if no username passed
+		
 		#Handle Players
 		if self.request.path == "/rest/player/":
 			self.response.headers['Content-Type'] = "application/json"
 			
-			userName = self.request.get('userName')
-			if userName == '':
-				return #return nothing if no username passed
-			
-			
-			playerName = self.request.get('player')
+			playerName = self.request.get('title')
 			
 			if playerName == '':
 				#Return all players
@@ -65,7 +66,6 @@ class RestEngine(webapp.RequestHandler):
 					output.append(to_dict(player))
 				
 				self.response.out.write(json.dumps(output))
-				return
 			else:
 				#Return specific players
 				q = Player.gql('WHERE user = :1 AND title = :2',userName,playerName)
@@ -76,21 +76,79 @@ class RestEngine(webapp.RequestHandler):
 					output.append(to_dict(player))
 				
 				self.response.out.write(json.dumps(output))
+				
+		elif self.request.path == "/rest/player/tracks":
+			#Send tracks as appropriate
+			self.response.headers['Content-Type'] = "application/json"
+			
+			#find which player to modify
+			playerTitle = self.request.get("playerTitle")
+			if playerTitle == "":
+				self.response.set_status(400)
 				return
+			
+			q = Player.gql("WHERE user is :1 AND title is :2",userName,playerTitle)
+			players = q.fetch(limit=1)
+			
+			if len(players) == 0:
+				self.response.set_status(400)
+				return
+			
+			#Output array of tracks
+			self.response.out.write(json.dumps(players[0].tracks))
+			
+			
+	def post(self):
+		#Must pass username
+		userName = self.request.headers['username']
+		if userName == '':
+			self.response.set_status(400)
+			return #return nothing if no username passed
+			
+		if self.request.path == "/rest/player/tracks":
+			#return tracks as appropriate
+			playerName = self.request.get('playerTitle')
+			if playerName == '':
+				self.response.set_status(400)
+				return
+			#Look if object already exists or not
+			q = Player.gql("WHERE USER IS :1 AND TITLE IS :2",userName,playerName)
+			players = q.fetch(limit=1)
+			
+			if len(players)==0:
+				self.response.set_status(400)
+				return
+				
+			trackDict = json.loads(self.request.body)
+			
+			for x in trackDict["deletedTracks"]:
+				players[0].tracks.remove(x)
+				
+			for x in trackDict["addedTracks"]:
+				players[0].tracks.append(x)
+				
+			self.response.out.write(json.dumps(players[0].tracks))
+			
 	#Used to create or modify players		
 	def put(self):
 		#PUT player is used to create or update player
 		if self.request.path == "/rest/player":
+		
+			userName = self.request.headers['username']
+			if userName == '':
+				self.response.set_status(400)
+				return #return nothing if no username passed
+				
 			self.response.headers['Content-Type'] = "application/json"
 			
 			#Parse json body
 			playerDict = json.loads(self.request.body)
 			
 			#Look if object already exists or not
-	      players = db.GqlQuery("SELECT * "
-	                              "FROM Player "
-	                              "WHERE USER IS :1 AND TITLE IS :2",
+			q = Player.gql("WHERE USER IS :1 AND TITLE IS :2",
 	                              playerDict["user"],playerDict["title"])
+	        players = q.fetch(limit=1)
+	        
 			if len(players)==0:
 				#Create new player with this information
 				newPlayer = Player()
@@ -98,7 +156,7 @@ class RestEngine(webapp.RequestHandler):
 				newPlayer.user = playerDict["user"]
 				newPlayer.tracks = []
 				newPlayer.put()
-				self.response.out.write(newPlayer)
+				self.response.out.write(json.dumps(to_dict(newPlayer)))
 				
 			else:
 				#Update the first existing player found
@@ -107,16 +165,11 @@ class RestEngine(webapp.RequestHandler):
 				currentPlayer.user = playerDict["user"]
 				
 				#Change tracks accordingly
-				sentTracks = playerDict["tracks"]
-				if len(sentTracks)>len(currentPlayer.tracks):
-					#Adding new track to the end of queue
-					currentPlayer.tracks.append(sentTracks[len(sentTracks)-1])
-				elif len(sentTracks)<len(currentPlayer.tracks):
-					#Removing track from front of queue
-					currentPlayer.tracks = currentPlayer.tracks[1:]	
-					
-				self.response.out.write(currentPlayer)
-						
+				if self.request.get("replaceTracks") == "YES" or self.request.get("replaceTracks") == "":
+					currentPlayer.tracks = playerDict["tracks"]
+				
+				self.response.out.write(json.dumps(to_dict(currentPlayer)))
+			
 		
 			
 application = webapp.WSGIApplication([
