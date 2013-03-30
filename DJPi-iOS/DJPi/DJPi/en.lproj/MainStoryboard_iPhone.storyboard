@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="w3T-Li-VeO">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Gf9-Jl-tnp">
+            <objects>
+                <viewController id="w3T-Li-VeO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="75B-Tx-dIV">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DWh-vm-sR4">
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="DJ Pi" id="Z4S-P2-fdq">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gzb-U2-R5Z">
+                                            <connections>
+                                                <segue destination="8gu-Xd-IQF" kind="modal" id="Tlf-nW-CJZ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DWh-vm-sR4" firstAttribute="trailing" secondItem="75B-Tx-dIV" secondAttribute="trailing" type="default" id="7VZ-AY-pBo"/>
+                            <constraint firstItem="DWh-vm-sR4" firstAttribute="top" secondItem="75B-Tx-dIV" secondAttribute="top" type="default" id="GGN-wf-w7h"/>
+                            <constraint firstItem="DWh-vm-sR4" firstAttribute="leading" secondItem="75B-Tx-dIV" secondAttribute="leading" type="default" id="MIR-In-ZnF"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sGf-rt-boR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="438" y="43"/>
+        </scene>
+        <!--Track Search View Controller-->
+        <scene sceneID="zcx-eM-SKm">
+            <objects>
+                <viewController id="8gu-Xd-IQF" customClass="TrackSearchViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xgj-ab-KYT">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="txN-pV-pUh">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCell" textLabel="wUc-Jz-6SI" style="IBUITableViewCellStyleDefault" id="DHM-Ga-NxI">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUc-Jz-6SI">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8gu-Xd-IQF" id="4EP-4K-d1t"/>
+                                    <outlet property="delegate" destination="8gu-Xd-IQF" id="Iuk-fd-TPt"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ssn-iI-DnS">
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Artist</string>
+                                    <string>Album</string>
+                                    <string>Track</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="8gu-Xd-IQF" id="jJ1-Ak-bbA"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ssn-iI-DnS" firstAttribute="top" secondItem="Xgj-ab-KYT" secondAttribute="top" type="default" id="8NA-17-WXo"/>
+                            <constraint firstItem="ssn-iI-DnS" firstAttribute="leading" secondItem="Xgj-ab-KYT" secondAttribute="leading" type="default" id="P8a-tw-7hi"/>
+                            <constraint firstItem="ssn-iI-DnS" firstAttribute="trailing" secondItem="Xgj-ab-KYT" secondAttribute="trailing" type="default" id="Vf8-r5-RVj"/>
+                            <constraint firstItem="txN-pV-pUh" firstAttribute="bottom" secondItem="Xgj-ab-KYT" secondAttribute="bottom" type="default" id="W3K-6w-xwX"/>
+                            <constraint firstItem="txN-pV-pUh" firstAttribute="trailing" secondItem="Xgj-ab-KYT" secondAttribute="trailing" type="default" id="j6x-xj-Clj"/>
+                            <constraint firstItem="txN-pV-pUh" firstAttribute="top" secondItem="ssn-iI-DnS" secondAttribute="bottom" type="user" id="vcx-Xc-pfi"/>
+                            <constraint firstItem="txN-pV-pUh" firstAttribute="leading" secondItem="Xgj-ab-KYT" secondAttribute="leading" type="default" id="w8L-f3-1Hf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="results" destination="txN-pV-pUh" id="aCo-w1-8Of"/>
+                        <outlet property="searchBar" destination="ssn-iI-DnS" id="kRb-aP-JAm"/>
+                        <outlet property="searchDisplayController" destination="EHh-1h-JVR" id="eHG-t9-un9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RGO-Jb-J7k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController searchResultsTitle="Results" id="EHh-1h-JVR">
+                    <connections>
+                        <outlet property="delegate" destination="8gu-Xd-IQF" id="u3m-Ix-mb3"/>
+                        <outlet property="searchContentsController" destination="8gu-Xd-IQF" id="YcZ-nu-cew"/>
+                        <outlet property="searchResultsDataSource" destination="8gu-Xd-IQF" id="oET-ke-YoB"/>
+                        <outlet property="searchResultsDelegate" destination="8gu-Xd-IQF" id="Ccr-K8-MEb"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1000" y="26"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TrackSearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TrackSearchViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="results" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
