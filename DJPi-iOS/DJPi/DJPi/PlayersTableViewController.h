@@ -10,4 +10,7 @@
 
 @interface PlayersTableViewController : UITableViewController
 
+@property (nonatomic,strong) NSDictionary* selectedPlayer;
+- (IBAction)cancelSelection:(id)sender;
+
 @end

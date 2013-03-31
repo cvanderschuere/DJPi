@@ -64,8 +64,12 @@ class RestEngine(webapp.RequestHandler):
 				output = list()
 				for player in results:
 					output.append(to_dict(player))
+					
+				outputDict = {
+					"players":output
+				}
 				
-				self.response.out.write(json.dumps(output))
+				self.response.out.write(json.dumps(outputDict))
 			else:
 				#Return specific players
 				q = Player.gql('WHERE user = :1 AND title = :2',userName,playerName)
@@ -74,8 +78,11 @@ class RestEngine(webapp.RequestHandler):
 				output = list()
 				for player in results:
 					output.append(to_dict(player))
-				
-				self.response.out.write(json.dumps(output))
+					
+				outputDict = {
+					"players":output
+				}
+				self.response.out.write(json.dumps(outputDict))
 		
 		elif self.request.path == "/rest/player/tracks":
 			#Send tracks as appropriate

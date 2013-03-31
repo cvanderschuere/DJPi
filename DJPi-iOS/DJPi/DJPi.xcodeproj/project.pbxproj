@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83801CC91708A6F0007C0095 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83801CC81708A6F0007C0095 /* PlaylistViewController.m */; };
 		83BEBED21707FA6A00550849 /* PlayersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEBED11707FA6A00550849 /* PlayersTableViewController.m */; };
 		83DEC8A61704CBE300414A78 /* SPLoginResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 83DEC8A51704CBE300414A78 /* SPLoginResources.bundle */; };
 		83DEC8B81704CD2B00414A78 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83DEC8B21704CD2B00414A78 /* AVFoundation.framework */; };
@@ -72,6 +73,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83801CC71708A6F0007C0095 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
+		83801CC81708A6F0007C0095 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
 		83BEBED01707FA6A00550849 /* PlayersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayersTableViewController.h; sourceTree = "<group>"; };
 		83BEBED11707FA6A00550849 /* PlayersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayersTableViewController.m; sourceTree = "<group>"; };
 		83DEC8A51704CBE300414A78 /* SPLoginResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SPLoginResources.bundle; path = "../../../cocoalibspotify/iOS Library/SPLoginResources.bundle"; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				83ED2FC717080374009572E1 /* appkey.h */,
 				83ECA6081704B9CE00E75B14 /* AppDelegate.h */,
 				83ECA6091704B9CE00E75B14 /* AppDelegate.m */,
+				83801CC71708A6F0007C0095 /* PlaylistViewController.h */,
+				83801CC81708A6F0007C0095 /* PlaylistViewController.m */,
 				83BEBED01707FA6A00550849 /* PlayersTableViewController.h */,
 				83BEBED11707FA6A00550849 /* PlayersTableViewController.m */,
 				83E2FCF21704D13F00C10B5E /* TrackSearchViewController.h */,
@@ -388,6 +393,7 @@
 				83ED2FA41708028A009572E1 /* AFURLConnectionOperation.m in Sources */,
 				83ED2FA51708028A009572E1 /* AFXMLRequestOperation.m in Sources */,
 				83ED2FA61708028A009572E1 /* UIImageView+AFNetworking.m in Sources */,
+				83801CC91708A6F0007C0095 /* PlaylistViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

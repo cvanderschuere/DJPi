@@ -60,14 +60,14 @@
     
     AFJSONRequestOperation* operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         //Use Response to reload data
-        if ([NSJSONSerialization isValidJSONObject:JSON]) {
-            NSDictionary* playerDict = (NSDictionary*) [NSJSONSerialization JSONObjectWithData:JSON options:0 error:NULL];
-            self.players = [playerDict objectForKey:@"players"];
-            [self.tableView reloadData];
-        }
+        NSDictionary* playerDict = (NSDictionary*) JSON;
+        self.players = [playerDict objectForKey:@"players"];
+        [self.tableView reloadData];
+        [sender endRefreshing];
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        
+        NSLog(@"Error:%@",error.localizedDescription);
+        [sender endRefreshing];
     }];
     
     AppDelegate* delegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
@@ -79,24 +79,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return self.players.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"playerCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    NSDictionary* player = self.players[indexPath.row];
+    cell.textLabel.text = [player objectForKey:@"title"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Queue: %d",[[player objectForKey:@"tracks"] count]];
     
     return cell;
 }
@@ -144,13 +145,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.selectedPlayer = self.players[indexPath.row];
+    [self performSegueWithIdentifier:@"unwindSeque" sender:nil];
 }
 
+
+- (IBAction)cancelSelection:(id)sender {
+    self.selectedPlayer = nil;
+    [self performSegueWithIdentifier:@"unwindSeque" sender:nil];
+}
 @end
