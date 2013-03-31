@@ -1,0 +1,65 @@
+HOST: http://DJPi.appspot.com/rest
+
+--- DJPi API v1 ---
+
+---
+Welcome to the our sample API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
+---
+
+--
+Player Resources
+The following section of resources is related to players, or registered instances of DJPi boxex
+--
+
+GET /player?title=XXX
+< 200
+< Content-Type: application/json
+{ "players":[
+    {
+        "title":"Example Title",
+        "user":"some.user@domain.com",
+        "tracks":["s","o""n","g"]
+    }
+    ]
+}
+
+PUT /player?replaceTracks=YES/NO
+> Content-Type: application/json
+{
+        "title":"Example Title",
+        "user":"some.user@domain.com",
+        "tracks":["s","o""n","g"]
+}
+< 200
+< Content-Type: application/json
+{
+        "title":"Saved Title",
+        "user":"some.user@domain.com",
+        "tracks":["s","o""n","g"]
+}
+
+--
+Track Resources
+The following section of resources is related to tracks, or the song urls that each player holds
+--
+
+GET /player/tracks?playerTitle=XXX
+< 200
+< Content-Type: application/json
+{
+    "tracks":["s","o","n","g"]
+}
+
+POST /player/tracks?playerTitle=XXX
+> Content-Type: application/json
+{
+    "addedTracks":["a","b","c"],
+    "deletedTracks":["c","s"]
+}
+< 200
+< Content-Type: application/json
+{
+    "tracks":["s","o","n","g"]
+}
+    
+
