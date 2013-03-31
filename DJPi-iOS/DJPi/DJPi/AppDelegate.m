@@ -7,13 +7,16 @@
 //
 
 #import "AppDelegate.h"
-#include "appkey.h"
+#import "appkey.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    //Create Request Queue
+    self.requestQueue = [[NSOperationQueue alloc] init];
     
     NSString *userAgent = [[[NSBundle mainBundle] infoDictionary] valueForKey:(__bridge NSString *)kCFBundleIdentifierKey];
 	NSData *appKey = [NSData dataWithBytes:&g_appkey length:g_appkey_size];

@@ -7,15 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83BEBED21707FA6A00550849 /* PlayersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEBED11707FA6A00550849 /* PlayersTableViewController.m */; };
 		83DEC8A61704CBE300414A78 /* SPLoginResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 83DEC8A51704CBE300414A78 /* SPLoginResources.bundle */; };
-		83DEC8A81704CC6A00414A78 /* appkey.h in Sources */ = {isa = PBXBuildFile; fileRef = 83DEC8A71704CC6A00414A78 /* appkey.h */; };
 		83DEC8B81704CD2B00414A78 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83DEC8B21704CD2B00414A78 /* AVFoundation.framework */; };
 		83DEC8B91704CD2B00414A78 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83DEC8B31704CD2B00414A78 /* AudioToolbox.framework */; };
 		83DEC8BA1704CD2B00414A78 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83DEC8B41704CD2B00414A78 /* CoreAudio.framework */; };
 		83DEC8BB1704CD2B00414A78 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83DEC8B51704CD2B00414A78 /* libstdc++.dylib */; };
 		83DEC8BC1704CD2B00414A78 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83DEC8B61704CD2B00414A78 /* CFNetwork.framework */; };
 		83DEC8BD1704CD2B00414A78 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83DEC8B71704CD2B00414A78 /* SystemConfiguration.framework */; };
-		83E2FCF11704CE1800C10B5E /* libCocoaLibSpotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83DEC8AF1704CD0200414A78 /* libCocoaLibSpotify.a */; };
 		83E2FCF41704D13F00C10B5E /* TrackSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E2FCF31704D13F00C10B5E /* TrackSearchViewController.m */; };
 		83E2FCFF170548BE00C10B5E /* LiveSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E2FCFE170548BE00C10B5E /* LiveSearch.m */; };
 		83ECA5FA1704B9CE00E75B14 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83ECA5F91704B9CE00E75B14 /* UIKit.framework */; };
@@ -30,29 +29,52 @@
 		83ECA6131704B9CE00E75B14 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83ECA6111704B9CE00E75B14 /* MainStoryboard_iPhone.storyboard */; };
 		83ECA6161704B9CE00E75B14 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83ECA6141704B9CE00E75B14 /* MainStoryboard_iPad.storyboard */; };
 		83ECA6191704B9CE00E75B14 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ECA6181704B9CE00E75B14 /* ViewController.m */; };
+		83ED2F561707FF85009572E1 /* libCocoaLibSpotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83ED2F531707FE84009572E1 /* libCocoaLibSpotify.a */; };
+		83ED2F9D1708028A009572E1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 83ED2F5C17080289009572E1 /* .gitignore */; };
+		83ED2F9E1708028A009572E1 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED2F5F17080289009572E1 /* AFHTTPClient.m */; };
+		83ED2F9F1708028A009572E1 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED2F6117080289009572E1 /* AFHTTPRequestOperation.m */; };
+		83ED2FA01708028A009572E1 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED2F6317080289009572E1 /* AFImageRequestOperation.m */; };
+		83ED2FA11708028A009572E1 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED2F6517080289009572E1 /* AFJSONRequestOperation.m */; };
+		83ED2FA21708028A009572E1 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED2F6717080289009572E1 /* AFNetworkActivityIndicatorManager.m */; };
+		83ED2FA31708028A009572E1 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED2F6A17080289009572E1 /* AFPropertyListRequestOperation.m */; };
+		83ED2FA41708028A009572E1 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED2F6C17080289009572E1 /* AFURLConnectionOperation.m */; };
+		83ED2FA51708028A009572E1 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED2F6E17080289009572E1 /* AFXMLRequestOperation.m */; };
+		83ED2FA61708028A009572E1 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED2F7017080289009572E1 /* UIImageView+AFNetworking.m */; };
+		83ED2FA71708028A009572E1 /* AFNetworking.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 83ED2F7117080289009572E1 /* AFNetworking.podspec */; };
+		83ED2FA81708028A009572E1 /* AFNetworking.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = 83ED2F7217080289009572E1 /* AFNetworking.xcworkspace */; };
+		83ED2FA91708028A009572E1 /* CHANGES in Resources */ = {isa = PBXBuildFile; fileRef = 83ED2F7317080289009572E1 /* CHANGES */; };
+		83ED2FBD1708028A009572E1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 83ED2F9B1708028A009572E1 /* LICENSE */; };
+		83ED2FBE1708028A009572E1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 83ED2F9C1708028A009572E1 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		83DEC8AE1704CD0200414A78 /* PBXContainerItemProxy */ = {
+		83ED2F521707FE84009572E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 83DEC8A91704CD0200414A78 /* CocoaLibSpotify iOS Library.xcodeproj */;
+			containerPortal = 83ED2F4D1707FE84009572E1 /* CocoaLibSpotify iOS Library.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 50AF49DC1439CBFE00E4A5EF;
 			remoteInfo = CocoaLibSpotify;
 		};
-		83DEC8B01704CD0200414A78 /* PBXContainerItemProxy */ = {
+		83ED2F541707FE84009572E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 83DEC8A91704CD0200414A78 /* CocoaLibSpotify iOS Library.xcodeproj */;
+			containerPortal = 83ED2F4D1707FE84009572E1 /* CocoaLibSpotify iOS Library.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 50D4F52B156BCDE800E237DD;
 			remoteInfo = CocoaLSTests;
 		};
+		83ED2F5917080089009572E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83ED2F4D1707FE84009572E1 /* CocoaLibSpotify iOS Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 50AF49DB1439CBFE00E4A5EF;
+			remoteInfo = CocoaLibSpotify;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83BEBED01707FA6A00550849 /* PlayersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayersTableViewController.h; sourceTree = "<group>"; };
+		83BEBED11707FA6A00550849 /* PlayersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayersTableViewController.m; sourceTree = "<group>"; };
 		83DEC8A51704CBE300414A78 /* SPLoginResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SPLoginResources.bundle; path = "../../../cocoalibspotify/iOS Library/SPLoginResources.bundle"; sourceTree = "<group>"; };
-		83DEC8A71704CC6A00414A78 /* appkey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = appkey.h; path = ../../appkey.h; sourceTree = "<group>"; };
-		83DEC8A91704CD0200414A78 /* CocoaLibSpotify iOS Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CocoaLibSpotify iOS Library.xcodeproj"; path = "../../cocoalibspotify/iOS Library/CocoaLibSpotify iOS Library.xcodeproj"; sourceTree = "<group>"; };
 		83DEC8B21704CD2B00414A78 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		83DEC8B31704CD2B00414A78 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		83DEC8B41704CD2B00414A78 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -81,6 +103,33 @@
 		83ECA6151704B9CE00E75B14 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		83ECA6171704B9CE00E75B14 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		83ECA6181704B9CE00E75B14 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		83ED2F4D1707FE84009572E1 /* CocoaLibSpotify iOS Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CocoaLibSpotify iOS Library.xcodeproj"; path = "../../../cocoalibspotify/iOS Library/CocoaLibSpotify iOS Library.xcodeproj"; sourceTree = "<group>"; };
+		83ED2F5C17080289009572E1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		83ED2F5E17080289009572E1 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		83ED2F5F17080289009572E1 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
+		83ED2F6017080289009572E1 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		83ED2F6117080289009572E1 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		83ED2F6217080289009572E1 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		83ED2F6317080289009572E1 /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
+		83ED2F6417080289009572E1 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		83ED2F6517080289009572E1 /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		83ED2F6617080289009572E1 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		83ED2F6717080289009572E1 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		83ED2F6817080289009572E1 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		83ED2F6917080289009572E1 /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		83ED2F6A17080289009572E1 /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		83ED2F6B17080289009572E1 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		83ED2F6C17080289009572E1 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		83ED2F6D17080289009572E1 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		83ED2F6E17080289009572E1 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		83ED2F6F17080289009572E1 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		83ED2F7017080289009572E1 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		83ED2F7117080289009572E1 /* AFNetworking.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AFNetworking.podspec; sourceTree = "<group>"; };
+		83ED2F7217080289009572E1 /* AFNetworking.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = AFNetworking.xcworkspace; sourceTree = "<group>"; };
+		83ED2F7317080289009572E1 /* CHANGES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES; sourceTree = "<group>"; };
+		83ED2F9B1708028A009572E1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		83ED2F9C1708028A009572E1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		83ED2FC717080374009572E1 /* appkey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = appkey.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83E2FCF11704CE1800C10B5E /* libCocoaLibSpotify.a in Frameworks */,
+				83ED2F561707FF85009572E1 /* libCocoaLibSpotify.a in Frameworks */,
 				83ECA5FA1704B9CE00E75B14 /* UIKit.framework in Frameworks */,
 				83ECA5FC1704B9CE00E75B14 /* Foundation.framework in Frameworks */,
 				83ECA5FE1704B9CE00E75B14 /* CoreGraphics.framework in Frameworks */,
@@ -104,19 +153,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		83DEC8AA1704CD0200414A78 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				83DEC8AF1704CD0200414A78 /* libCocoaLibSpotify.a */,
-				83DEC8B11704CD0200414A78 /* CocoaLSTests.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		83ECA5ED1704B9CE00E75B14 = {
 			isa = PBXGroup;
 			children = (
-				83DEC8A91704CD0200414A78 /* CocoaLibSpotify iOS Library.xcodeproj */,
 				83ECA5FF1704B9CE00E75B14 /* DJPi */,
 				83ECA5F81704B9CE00E75B14 /* Frameworks */,
 				83ECA5F71704B9CE00E75B14 /* Products */,
@@ -134,6 +173,7 @@
 		83ECA5F81704B9CE00E75B14 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83ED2F5B17080289009572E1 /* AFNetworking */,
 				83ECA5F91704B9CE00E75B14 /* UIKit.framework */,
 				83ECA5FB1704B9CE00E75B14 /* Foundation.framework */,
 				83ECA5FD1704B9CE00E75B14 /* CoreGraphics.framework */,
@@ -150,11 +190,14 @@
 		83ECA5FF1704B9CE00E75B14 /* DJPi */ = {
 			isa = PBXGroup;
 			children = (
-				83ECA6081704B9CE00E75B14 /* AppDelegate.h */,
-				83ECA6091704B9CE00E75B14 /* AppDelegate.m */,
-				83DEC8A71704CC6A00414A78 /* appkey.h */,
+				83ED2F4D1707FE84009572E1 /* CocoaLibSpotify iOS Library.xcodeproj */,
 				83ECA6111704B9CE00E75B14 /* MainStoryboard_iPhone.storyboard */,
 				83ECA6141704B9CE00E75B14 /* MainStoryboard_iPad.storyboard */,
+				83ED2FC717080374009572E1 /* appkey.h */,
+				83ECA6081704B9CE00E75B14 /* AppDelegate.h */,
+				83ECA6091704B9CE00E75B14 /* AppDelegate.m */,
+				83BEBED01707FA6A00550849 /* PlayersTableViewController.h */,
+				83BEBED11707FA6A00550849 /* PlayersTableViewController.m */,
 				83E2FCF21704D13F00C10B5E /* TrackSearchViewController.h */,
 				83E2FCF31704D13F00C10B5E /* TrackSearchViewController.m */,
 				83ECA6171704B9CE00E75B14 /* ViewController.h */,
@@ -182,6 +225,56 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		83ED2F4E1707FE84009572E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83ED2F531707FE84009572E1 /* libCocoaLibSpotify.a */,
+				83ED2F551707FE84009572E1 /* CocoaLSTests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		83ED2F5B17080289009572E1 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				83ED2F5C17080289009572E1 /* .gitignore */,
+				83ED2F5D17080289009572E1 /* AFNetworking */,
+				83ED2F7117080289009572E1 /* AFNetworking.podspec */,
+				83ED2F7217080289009572E1 /* AFNetworking.xcworkspace */,
+				83ED2F7317080289009572E1 /* CHANGES */,
+				83ED2F9B1708028A009572E1 /* LICENSE */,
+				83ED2F9C1708028A009572E1 /* README.md */,
+			);
+			name = AFNetworking;
+			path = ../../AFNetworking;
+			sourceTree = "<group>";
+		};
+		83ED2F5D17080289009572E1 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				83ED2F5E17080289009572E1 /* AFHTTPClient.h */,
+				83ED2F5F17080289009572E1 /* AFHTTPClient.m */,
+				83ED2F6017080289009572E1 /* AFHTTPRequestOperation.h */,
+				83ED2F6117080289009572E1 /* AFHTTPRequestOperation.m */,
+				83ED2F6217080289009572E1 /* AFImageRequestOperation.h */,
+				83ED2F6317080289009572E1 /* AFImageRequestOperation.m */,
+				83ED2F6417080289009572E1 /* AFJSONRequestOperation.h */,
+				83ED2F6517080289009572E1 /* AFJSONRequestOperation.m */,
+				83ED2F6617080289009572E1 /* AFNetworkActivityIndicatorManager.h */,
+				83ED2F6717080289009572E1 /* AFNetworkActivityIndicatorManager.m */,
+				83ED2F6817080289009572E1 /* AFNetworking.h */,
+				83ED2F6917080289009572E1 /* AFPropertyListRequestOperation.h */,
+				83ED2F6A17080289009572E1 /* AFPropertyListRequestOperation.m */,
+				83ED2F6B17080289009572E1 /* AFURLConnectionOperation.h */,
+				83ED2F6C17080289009572E1 /* AFURLConnectionOperation.m */,
+				83ED2F6D17080289009572E1 /* AFXMLRequestOperation.h */,
+				83ED2F6E17080289009572E1 /* AFXMLRequestOperation.m */,
+				83ED2F6F17080289009572E1 /* UIImageView+AFNetworking.h */,
+				83ED2F7017080289009572E1 /* UIImageView+AFNetworking.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -196,6 +289,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				83ED2F5A17080089009572E1 /* PBXTargetDependency */,
 			);
 			name = DJPi;
 			productName = DJPi;
@@ -223,8 +317,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 83DEC8AA1704CD0200414A78 /* Products */;
-					ProjectRef = 83DEC8A91704CD0200414A78 /* CocoaLibSpotify iOS Library.xcodeproj */;
+					ProductGroup = 83ED2F4E1707FE84009572E1 /* Products */;
+					ProjectRef = 83ED2F4D1707FE84009572E1 /* CocoaLibSpotify iOS Library.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -235,18 +329,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		83DEC8AF1704CD0200414A78 /* libCocoaLibSpotify.a */ = {
+		83ED2F531707FE84009572E1 /* libCocoaLibSpotify.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libCocoaLibSpotify.a;
-			remoteRef = 83DEC8AE1704CD0200414A78 /* PBXContainerItemProxy */;
+			remoteRef = 83ED2F521707FE84009572E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		83DEC8B11704CD0200414A78 /* CocoaLSTests.app */ = {
+		83ED2F551707FE84009572E1 /* CocoaLSTests.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = CocoaLSTests.app;
-			remoteRef = 83DEC8B01704CD0200414A78 /* PBXContainerItemProxy */;
+			remoteRef = 83ED2F541707FE84009572E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -263,6 +357,12 @@
 				83ECA6131704B9CE00E75B14 /* MainStoryboard_iPhone.storyboard in Resources */,
 				83ECA6161704B9CE00E75B14 /* MainStoryboard_iPad.storyboard in Resources */,
 				83DEC8A61704CBE300414A78 /* SPLoginResources.bundle in Resources */,
+				83ED2F9D1708028A009572E1 /* .gitignore in Resources */,
+				83ED2FA71708028A009572E1 /* AFNetworking.podspec in Resources */,
+				83ED2FA81708028A009572E1 /* AFNetworking.xcworkspace in Resources */,
+				83ED2FA91708028A009572E1 /* CHANGES in Resources */,
+				83ED2FBD1708028A009572E1 /* LICENSE in Resources */,
+				83ED2FBE1708028A009572E1 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,13 +376,30 @@
 				83ECA6061704B9CE00E75B14 /* main.m in Sources */,
 				83ECA60A1704B9CE00E75B14 /* AppDelegate.m in Sources */,
 				83ECA6191704B9CE00E75B14 /* ViewController.m in Sources */,
-				83DEC8A81704CC6A00414A78 /* appkey.h in Sources */,
 				83E2FCF41704D13F00C10B5E /* TrackSearchViewController.m in Sources */,
 				83E2FCFF170548BE00C10B5E /* LiveSearch.m in Sources */,
+				83BEBED21707FA6A00550849 /* PlayersTableViewController.m in Sources */,
+				83ED2F9E1708028A009572E1 /* AFHTTPClient.m in Sources */,
+				83ED2F9F1708028A009572E1 /* AFHTTPRequestOperation.m in Sources */,
+				83ED2FA01708028A009572E1 /* AFImageRequestOperation.m in Sources */,
+				83ED2FA11708028A009572E1 /* AFJSONRequestOperation.m in Sources */,
+				83ED2FA21708028A009572E1 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				83ED2FA31708028A009572E1 /* AFPropertyListRequestOperation.m in Sources */,
+				83ED2FA41708028A009572E1 /* AFURLConnectionOperation.m in Sources */,
+				83ED2FA51708028A009572E1 /* AFXMLRequestOperation.m in Sources */,
+				83ED2FA61708028A009572E1 /* UIImageView+AFNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		83ED2F5A17080089009572E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CocoaLibSpotify;
+			targetProxy = 83ED2F5917080089009572E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		83ECA6021704B9CE00E75B14 /* InfoPlist.strings */ = {
@@ -326,6 +443,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -358,6 +476,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -373,14 +492,11 @@
 		83ECA61D1704B9CE00E75B14 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../cocoalibspotify/iOS Library/libspotify-12.1.45-iOS-universal\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DJPi/DJPi-Prefix.pch";
 				INFOPLIST_FILE = "DJPi/DJPi-Info.plist";
-				LIBRARY_SEARCH_PATHS = $CONFIGURATION_BUILD_DIR/include;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -393,14 +509,11 @@
 		83ECA61E1704B9CE00E75B14 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../cocoalibspotify/iOS Library/libspotify-12.1.45-iOS-universal\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DJPi/DJPi-Prefix.pch";
 				INFOPLIST_FILE = "DJPi/DJPi-Info.plist";
-				LIBRARY_SEARCH_PATHS = $CONFIGURATION_BUILD_DIR/include;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",

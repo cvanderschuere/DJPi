@@ -11,5 +11,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate,SPSessionDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) NSOperationQueue *requestQueue;
 
 @end
