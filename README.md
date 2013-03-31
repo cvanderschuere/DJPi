@@ -13,28 +13,10 @@ DJPi is designed to be easily duplicatable. Following a few steps should allow y
 4.  Build and run iOS app to add/remove songs from a player's queue (Don't forget about your appkey.h)
 5.  Relax and enjoy the music!
 
-Spotify
-=======
-Spotify is used as music source and search engine for DJPi.
-
-Setup
------
-In order to build DJPi you need to follow a couple steps:
-
-1. Create, or use an existing, Spotify Premium account that is enabled for development
-2. Download the appkey.c (renamed appkey.h in DJPi) from http://developer.spotify.com
-3. Include appkey.h to iOS and Raspberry Pi project where appropriate (These two pieces will not compile without one)
-
-Usage
------
-
-###iOS
-* Searching for Artists/Albums/Tracks
-* Converting track to URL that can later be played on the Pi
-
-###Raspberry Pi
-* Plays spotify URLS
-
+Documentation
+=============
+##API
+Full Documentation of the DJPi API is available at http://docs.djpiapiv1.apiary.io
 
 Building
 =========
@@ -58,3 +40,25 @@ All the source files are provided for creating the necessary server instance. To
 
 Raspberry Pi
 ------------
+
+Spotify
+=======
+Spotify is used as music source and search engine for DJPi.
+
+Setup
+-----
+In order to build DJPi you need to follow a couple steps:
+
+1. Create, or use an existing, Spotify Premium account that is enabled for development
+2. Download the appkey.c (renamed appkey.h in DJPi) from http://developer.spotify.com
+3. Include appkey.h to iOS and Raspberry Pi project where appropriate (These two pieces will not compile without one)
+
+Usage
+-----
+
+###iOS
+* Searching for Artists/Albums/Tracks
+* Converting track to URL that can later be played on the Pi
+
+###Raspberry Pi
+* Plays spotify URLS
