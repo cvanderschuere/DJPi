@@ -7,7 +7,6 @@
 //
 
 #import "PlayersTableViewController.h"
-#import "AFJSONRequestOperation.h"
 #import "AppDelegate.h"
 
 @interface PlayersTableViewController ()
@@ -43,6 +42,8 @@
     
     //Init players array
     self.players = [NSArray array];
+    
+    [self refreshTableView:self.refreshControl];
 }
 
 
@@ -54,10 +55,12 @@
 
 #pragma mark - Data methods
 - (void) refreshTableView:(UIRefreshControl*)sender{
+    [sender beginRefreshing];
+    
     //Populate new request
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:9090/rest/player"]];
     [request setValue:@"chris.vanderschuere@gmail.com" forHTTPHeaderField:@"username"];
-    
+
     AFJSONRequestOperation* operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         //Use Response to reload data
         NSDictionary* playerDict = (NSDictionary*) JSON;

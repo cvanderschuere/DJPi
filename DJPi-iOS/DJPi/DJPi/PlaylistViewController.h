@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlaylistViewController : UIViewController
+@interface PlaylistViewController : UIViewController <UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 
 @property (nonatomic,strong) NSDictionary *currentPlayer;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *playerButton;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 -(IBAction)unwindFromPlayerSelection:(UIStoryboardSegue*)sender;
 

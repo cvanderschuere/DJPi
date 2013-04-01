@@ -12,11 +12,44 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ava-ou-DkE">
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FFx-Pj-7yU">
+                                    <size key="itemSize" width="234" height="164"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="trackCell" id="7Jc-yR-uSm">
+                                        <rect key="frame" x="43" y="0.0" width="234" height="164"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="234" height="164"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="music-note.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="AP3-1G-0rF"/>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="AP3-1G-0rF" firstAttribute="bottom" secondItem="7Jc-yR-uSm" secondAttribute="bottom" type="default" id="HUv-Dg-FAN"/>
+                                            <constraint firstItem="AP3-1G-0rF" firstAttribute="trailing" secondItem="7Jc-yR-uSm" secondAttribute="trailing" type="default" id="YNx-2h-7l6"/>
+                                            <constraint firstItem="AP3-1G-0rF" firstAttribute="top" secondItem="7Jc-yR-uSm" secondAttribute="top" type="default" id="amU-0f-pim"/>
+                                            <constraint firstItem="AP3-1G-0rF" firstAttribute="leading" secondItem="7Jc-yR-uSm" secondAttribute="leading" type="default" id="jYt-bA-dE8"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="w3T-Li-VeO" id="Lbc-po-8TE"/>
+                                    <outlet property="delegate" destination="w3T-Li-VeO" id="VUR-Rn-jLG"/>
+                                </connections>
+                            </collectionView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DWh-vm-sR4">
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem title="DJ Pi" id="Z4S-P2-fdq">
-                                        <barButtonItem key="leftBarButtonItem" title="Living Room" id="B4j-Az-JeK">
+                                        <barButtonItem key="leftBarButtonItem" title="Select Player" id="B4j-Az-JeK">
                                             <connections>
                                                 <segue destination="5EK-0q-KYx" kind="modal" modalTransitionStyle="flipHorizontal" id="JNI-zP-lh2"/>
                                             </connections>
@@ -34,10 +67,15 @@
                         <constraints>
                             <constraint firstItem="DWh-vm-sR4" firstAttribute="trailing" secondItem="75B-Tx-dIV" secondAttribute="trailing" type="default" id="7VZ-AY-pBo"/>
                             <constraint firstItem="DWh-vm-sR4" firstAttribute="top" secondItem="75B-Tx-dIV" secondAttribute="top" type="default" id="GGN-wf-w7h"/>
+                            <constraint firstItem="Ava-ou-DkE" firstAttribute="top" secondItem="DWh-vm-sR4" secondAttribute="bottom" type="default" id="Kr6-fB-igD"/>
                             <constraint firstItem="DWh-vm-sR4" firstAttribute="leading" secondItem="75B-Tx-dIV" secondAttribute="leading" type="default" id="MIR-In-ZnF"/>
+                            <constraint firstItem="Ava-ou-DkE" firstAttribute="trailing" secondItem="75B-Tx-dIV" secondAttribute="trailing" type="default" id="T63-jN-F6x"/>
+                            <constraint firstItem="Ava-ou-DkE" firstAttribute="leading" secondItem="75B-Tx-dIV" secondAttribute="leading" type="default" id="mL1-Q2-QCY"/>
+                            <constraint firstItem="Ava-ou-DkE" firstAttribute="bottom" secondItem="75B-Tx-dIV" secondAttribute="bottom" type="default" id="rfQ-fc-54U"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="Ava-ou-DkE" id="xmw-IV-vDz"/>
                         <outlet property="playerButton" destination="B4j-Az-JeK" id="Xf2-eX-g12"/>
                     </connections>
                 </viewController>
@@ -171,7 +209,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1000" y="26"/>
+            <point key="canvasLocation" x="1145" y="-88"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7fq-eb-Ok7">
@@ -192,6 +230,9 @@
             <point key="canvasLocation" x="679" y="-751"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="music-note.jpg" width="550" height="550"/>
+    </resources>
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
@@ -206,6 +247,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaylistViewController.h"/>
             <relationships>
                 <relationship kind="action" name="unwindFromPlayerSelection:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="playerButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="TrackSearchViewController" superclassName="UIViewController">
@@ -214,6 +257,15 @@
                 <relationship kind="outlet" name="results" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
         </class>
         <class className="UIStoryboardSegue" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>

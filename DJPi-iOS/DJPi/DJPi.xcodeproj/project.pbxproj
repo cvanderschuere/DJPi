@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		834BF80A1708D8090005F8DB /* music-note.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 834BF8091708D8090005F8DB /* music-note.jpg */; };
 		83801CC91708A6F0007C0095 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83801CC81708A6F0007C0095 /* PlaylistViewController.m */; };
 		83BEBED21707FA6A00550849 /* PlayersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEBED11707FA6A00550849 /* PlayersTableViewController.m */; };
 		83DEC8A61704CBE300414A78 /* SPLoginResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 83DEC8A51704CBE300414A78 /* SPLoginResources.bundle */; };
@@ -73,6 +74,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		834BF8091708D8090005F8DB /* music-note.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "music-note.jpg"; sourceTree = "<group>"; };
 		83801CC71708A6F0007C0095 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
 		83801CC81708A6F0007C0095 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
 		83BEBED01707FA6A00550849 /* PlayersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayersTableViewController.h; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				83E2FD001705496C00C10B5E /* Constants.h */,
 				83E2FCFD170548BE00C10B5E /* LiveSearch.h */,
 				83E2FCFE170548BE00C10B5E /* LiveSearch.m */,
+				834BF8091708D8090005F8DB /* music-note.jpg */,
 				83ECA6001704B9CE00E75B14 /* Supporting Files */,
 			);
 			path = DJPi;
@@ -368,6 +371,7 @@
 				83ED2FA91708028A009572E1 /* CHANGES in Resources */,
 				83ED2FBD1708028A009572E1 /* LICENSE in Resources */,
 				83ED2FBE1708028A009572E1 /* README.md in Resources */,
+				834BF80A1708D8090005F8DB /* music-note.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
