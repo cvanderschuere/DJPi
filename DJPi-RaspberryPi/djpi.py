@@ -19,9 +19,9 @@ container_loaded = threading.Event()
 
 
 class PiPlayer(SpotifySessionManager):
-
+	
 	appkey_file = os.path.join(os.path.dirname(__file__), 'spotify_appkey.key')
-
+	
 	def __init__(self, *a, **kw):
 		SpotifySessionManager.__init__(self, *a, **kw)
 		self.audio = AudioSink(backend=self)
@@ -30,36 +30,36 @@ class PiPlayer(SpotifySessionManager):
 		self.currentIndex = 0;
 		self.track_playing = None
 		print "Logging in, please wait..."
-
-
+	
+	
 	def logged_in(self, session, error):
 		if error:
-	   	print error
+			print error
 	   	return
-
-			print "Logged in!"
-			
-			#Load sample queue
-			self.trackQueue = ["spotify:track:64pDOeUGiB0vboqmJx2gGp","spotify:track:2lwwrWVKdf3LR9lbbhnr6R","spotify:track:0yp6ui2sosUjCUro1rRk2Q"];
-         l = Link.from_string(self.trackQueue[self.currentIndex])
-         if not l.type() == Link.LINK_TRACK:
-             print "You can only play tracks!"
-             return
-         self.load_track(l.as_track())
-			
-
+		
+		print "Logged in!"
+		
+		#Load sample queue
+		self.trackQueue = ["spotify:track:64pDOeUGiB0vboqmJx2gGp","spotify:track:2lwwrWVKdf3LR9lbbhnr6R","spotify:track:0yp6ui2sosUjCUro1rRk2Q"]
+		l = Link.from_string(self.trackQueue[self.currentIndex])
+      if not l.type() == Link.LINK_TRACK:
+          print "You can only play tracks!"
+          return
+      self.load_track(l.as_track())
+	
+	
 	def logged_out(self, session):
 		print "Logged out!"
-
+	
 	def load_track(self, track):
 		print u"Loading track..."
 		while not track.is_loaded():
 			time.sleep(0.1)
-			
+		
 		if track.is_autolinked(): # if linked, load the target track instead
 			print "Autolinked track, loading the linked-to track"
    		return self.load_track(track.playable())
-			
+		
 		if track.availability() != 1:
    		print "Track not available (%s)" % track.availability()
 		
@@ -68,25 +68,25 @@ class PiPlayer(SpotifySessionManager):
 		self.new_track_playing(track)
 		self.session.load(track)
 		print "Loaded track: %s" % track.name()
-
+	
 	def new_track_playing(self, track):
 		self.track_playing = track
-
+	
 	def play(self):
 	   self.audio.start()
 	   self.session.play(1)
 	   print "Playing"
 	   self.playing = True
-
+	
 	def stop(self):
 	   self.session.play(0)
 	   print "Stopping"
 	   self.playing = False
 	   self.audio.stop()
-
+	
 	def music_delivery_safe(self, *args, **kwargs):
 	   return self.audio.music_delivery(*args, **kwargs)
-
+	
 	def next(self):
 	   self.stop()
 	   if self._queue:
@@ -95,7 +95,7 @@ class PiPlayer(SpotifySessionManager):
 	       self.play()
 	   else:
 	       self.stop()
-
+	
 	def end_of_track(self, sess):
 	   self.audio.end_of_track()
 		
@@ -107,7 +107,7 @@ class PiPlayer(SpotifySessionManager):
              print "You can only play tracks!"
              return
          self.load_track(l.as_track())
-			
+		
 		#Update queue from webserver
 
 
