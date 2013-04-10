@@ -8,6 +8,7 @@
 
 #import "PlaylistViewController.h"
 #import "PlayersTableViewController.h"
+#import "TrackSearchViewController.h"
 #import "AppDelegate.h"
 
 @interface PlaylistViewController ()
@@ -61,6 +62,7 @@
         NSString* urlString = [[@"http://localhost:9090/rest/player?title=" stringByAppendingString:previousPlayerTitle] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
         [request setValue:@"chris.vanderschuere@gmail.com" forHTTPHeaderField:@"username"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"content-type"];
         
         AFJSONRequestOperation* operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
             //Use Response to reload data
@@ -71,7 +73,7 @@
             }
             
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-            NSLog(@"Error:%@",error.localizedDescription);
+            NSLog(@"Error:%@ %@",error.localizedDescription,JSON);
         }];
         
         AppDelegate* delegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
@@ -102,6 +104,36 @@
 -(IBAction)unwindFromPlayerSelection:(UIStoryboardSegue*)sender{
     //Set current Player base upon selected player...could have been done with a delegate
     self.currentPlayer = [sender.sourceViewController selectedPlayer];
+    
+}
+-(IBAction)unwindFromTrackSelection:(UIStoryboardSegue *)sender{
+    //Get selected track from 
+    TrackSearchViewController* trackVC = sender.sourceViewController;
+    NSLog(@"Track: %@",trackVC.selectedTrackURL);
+    
+    if (trackVC.selectedTrackURL && self.currentPlayer) {
+        //Send track to server and update playlist
+        NSString* urlString = [[@"http://localhost:9090/rest/player/tracks?playerTitle=" stringByAppendingString:self.currentPlayer[@"title"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+        [request setValue:@"chris.vanderschuere@gmail.com" forHTTPHeaderField:@"username"];
+        [request setHTTPMethod:@"POST"];
+        NSError* error = nil;
+        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:@{@"addedTracks":@[trackVC.selectedTrackURL.absoluteString]} options:NSJSONWritingPrettyPrinted error:&error];
+        if (error)
+            NSLog(@"Failure Reason: %@",error.localizedDescription);
+        [request setHTTPBody:jsonData];
+        
+        AFJSONRequestOperation* operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+            NSArray* responseDict = (NSArray*) JSON;
+            NSLog(@"Response: %@: %@",[NSHTTPURLResponse localizedStringForStatusCode:response.statusCode],responseDict);
+            
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+            NSLog(@"Failure: %@",error.localizedDescription);
+        }];
+
+        AppDelegate* delegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+        [delegate.requestQueue addOperation:operation];
+    }
     
 }
 @end

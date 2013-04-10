@@ -12,4 +12,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *results;
 
+@property (nonatomic, strong) NSURL* selectedTrackURL;
+
 @end

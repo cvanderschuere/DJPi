@@ -22,6 +22,9 @@
     //Add observer for live search
     [self addObserver:self forKeyPath:@"liveSearch.latestSearch.loaded" options:0 context:NULL];
 }
+- (void) dealloc{
+    [self removeObserver:self forKeyPath:@"liveSearch.latestSearch.loaded"];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -52,7 +55,27 @@
 #pragma mark - UITableView Delegate
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSURL* url = nil;
+    switch (self.searchBar.selectedScopeButtonIndex) {
+        case 0: //Artist
+            url = [[self.liveSearch.topArtists objectAtIndex:indexPath.row] spotifyURL];
+            break;
+        case 1: //Album
+            url = [[self.liveSearch.topAlbums objectAtIndex:indexPath.row] spotifyURL];
+            break;
+        case 2: //Track
+            url = [[self.liveSearch.topTracks objectAtIndex:indexPath.row] spotifyURL];
+            break;
+        default:
+            break;
+    }
+    
+    self.selectedTrackURL = url;
+
+    
     [self.searchBar resignFirstResponder];
+    [self performSegueWithIdentifier:@"unwindSegue" sender:self];
 }
 #pragma mark - UITableView Datasource
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

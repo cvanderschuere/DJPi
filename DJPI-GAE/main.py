@@ -119,7 +119,9 @@ class RestEngine(webapp.RequestHandler):
 				self.response.set_status(400)
 				return
 			
-			trackDict = json.loads(self.request.body)
+			self.response.out.write(json.dumps(self.request.body));
+			return;
+			#trackDict = json.loads(self.request.body)
 			
 			#Look if object already exists or not
 			q = Player.gql("WHERE user = :1 AND title = :2",userName,playerName)
@@ -129,14 +131,19 @@ class RestEngine(webapp.RequestHandler):
 				self.response.set_status(400)
 				return
 			
+			if "deletedTracks" in trackDict:
+				for x in trackDict["deletedTracks"]:
+					players[0].tracks.remove(x)
 			
-			for x in trackDict["deletedTracks"]:
-				players[0].tracks.remove(x)
+			if "addedTracks" in trackDict:
+				for x in trackDict["addedTracks"]:
+					players[0].tracks.append(x)
+	
+			players[0].put();
 			
-			for x in trackDict["addedTracks"]:
-				players[0].tracks.append(x)
-			
-			self.response.out.write(json.dumps(players[0].tracks))
+			tracksDict = {"tracks":players[0].tracks};
+				
+			self.response.out.write(json.dumps(tracksDict))
 	
 	#Used to create or modify players
 	def put(self):

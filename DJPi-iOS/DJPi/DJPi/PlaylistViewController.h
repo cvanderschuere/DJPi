@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 -(IBAction)unwindFromPlayerSelection:(UIStoryboardSegue*)sender;
+-(IBAction)unwindFromTrackSelection:(UIStoryboardSegue*)sender;
 
 @end
