@@ -47,11 +47,9 @@ Building the player is written with a Raspberry Pi and Arch Linux in mind, but t
 3. SSH into pi with user:root password:root
 3. Install necessary dependencies: 'pacman -S git glibc alsa-lib clang'
 4. Copy latest libspotify from http://developer.spotify.com to home directory
-5. Run 'make install'
+5. Run 'make prefix=/usr install'
 6. Test pkg export with 'pkg-config --print-provides libspotify' (Should output that library found with correct version number)
-7. Run 'export LD_LIBRARY_PATH=/path/to/libspotify.so.12'
-8. Clone this repo to /home
-9. 'make all'
+8. Clone this repo to /home 'git --recursive clone <repo url>' 
 
 
 Spotify
