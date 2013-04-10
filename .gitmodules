@@ -4,3 +4,6 @@
 [submodule "cocoalibspotify"]
 	path = cocoalibspotify
 	url = git@github.com:spotify/cocoalibspotify.git
+[submodule "pyspotify"]
+	path = pyspotify
+	url = https://github.com/mopidy/pyspotify.git
