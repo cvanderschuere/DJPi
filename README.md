@@ -50,6 +50,7 @@ Building the player is written with a Raspberry Pi and Arch Linux in mind, but t
 5. Run 'make prefix=/usr install'
 6. Test pkg export with 'pkg-config --print-provides libspotify' (Should output that library found with correct version number)
 8. Clone this repo to /home 'git --recursive clone <repo url>' 
+9. Init pyspotify library 'python2 setup.py install'
 
 
 Spotify
