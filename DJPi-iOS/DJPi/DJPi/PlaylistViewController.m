@@ -59,9 +59,9 @@
     NSString* previousPlayerTitle = [[NSUserDefaults standardUserDefaults] valueForKey:@"previousPlayer"];
     if (previousPlayerTitle) {
         //Populate new request
-        NSString* urlString = [[@"http://localhost:9090/rest/player?title=" stringByAppendingString:previousPlayerTitle] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString* urlString = [[@"http://cdv-djpi.appspot.com/rest/player?title=" stringByAppendingString:previousPlayerTitle] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-        [request setValue:@"chris.vanderschuere@gmail.com" forHTTPHeaderField:@"username"];
+        [request setValue:@"christopher.vanderschuere@gmail.com" forHTTPHeaderField:@"username"];
         [request setValue:@"application/json" forHTTPHeaderField:@"content-type"];
         
         AFJSONRequestOperation* operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
@@ -113,16 +113,25 @@
     
     if (trackVC.selectedTrackURL && self.currentPlayer) {
         //Send track to server and update playlist
-        NSString* urlString = [[@"http://localhost:9090/rest/player/tracks?playerTitle=" stringByAppendingString:self.currentPlayer[@"title"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString* urlString = [[@"http://cdv-djpi.appspot.com/rest/player/tracks?playerTitle=" stringByAppendingString:self.currentPlayer[@"title"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-        [request setValue:@"chris.vanderschuere@gmail.com" forHTTPHeaderField:@"username"];
         [request setHTTPMethod:@"POST"];
+        [request setValue:@"christopher.vanderschuere@gmail.com" forHTTPHeaderField:@"username"];
         NSError* error = nil;
-        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:@{@"addedTracks":@[trackVC.selectedTrackURL.absoluteString]} options:NSJSONWritingPrettyPrinted error:&error];
+        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:@{@"addedTracks":@[trackVC.selectedTrackURL.absoluteString],@"deletedTracks":@[]} options:NSJSONWritingPrettyPrinted error:&error];
+        NSLog(@"Json data: %@",jsonData);
         if (error)
             NSLog(@"Failure Reason: %@",error.localizedDescription);
         [request setHTTPBody:jsonData];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         
+        NSError* error2 = nil;
+        [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error2];
+        if (error2) {
+            NSLog(@"Error: %@",error2.localizedFailureReason);
+        }
+        
+        /*
         AFJSONRequestOperation* operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
             NSArray* responseDict = (NSArray*) JSON;
             NSLog(@"Response: %@: %@",[NSHTTPURLResponse localizedStringForStatusCode:response.statusCode],responseDict);
@@ -133,6 +142,7 @@
 
         AppDelegate* delegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
         [delegate.requestQueue addOperation:operation];
+         */
     }
     
 }

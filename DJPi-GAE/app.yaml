@@ -1,4 +1,4 @@
-application: djpi
+application: cdv-djpi
 version: 1
 runtime: python
 api_version: 1

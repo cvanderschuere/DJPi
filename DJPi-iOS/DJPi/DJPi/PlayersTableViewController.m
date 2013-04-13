@@ -58,8 +58,8 @@
     [sender beginRefreshing];
     
     //Populate new request
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:9090/rest/player"]];
-    [request setValue:@"chris.vanderschuere@gmail.com" forHTTPHeaderField:@"username"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://cdv-djpi.appspot.com/rest/player"]];
+    [request setValue:@"christopher.vanderschuere@gmail.com" forHTTPHeaderField:@"username"];
 
     AFJSONRequestOperation* operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         //Use Response to reload data

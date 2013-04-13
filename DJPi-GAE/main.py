@@ -2,7 +2,7 @@ import cgi
 import datetime
 import urllib
 import wsgiref.handlers
-import json
+from django.utils import simplejson as json
 import logging
 
 from google.appengine.ext import db
@@ -119,9 +119,7 @@ class RestEngine(webapp.RequestHandler):
 				self.response.set_status(400)
 				return
 			
-			self.response.out.write(json.dumps(self.request.body));
-			return;
-			#trackDict = json.loads(self.request.body)
+			trackDict = json.loads(self.request.body)
 			
 			#Look if object already exists or not
 			q = Player.gql("WHERE user = :1 AND title = :2",userName,playerName)
