@@ -148,6 +148,7 @@ class SpotifyManager(SpotifySessionManager):
 if __name__ == '__main__':
 	import optparse
 	op = optparse.OptionParser(version="%prog 0.1")
+	op.add_option("-n", "--playername", help = "Player Name")
 	op.add_option("-u", "--username", help="Spotify username")
 	op.add_option("-p", "--password", help="Spotify password")
 	op.add_option("-v", "--verbose", help="Show debug information",
@@ -155,6 +156,9 @@ if __name__ == '__main__':
 	(options, args) = op.parse_args()
 	if options.verbose:
 		logging.basicConfig(level=logging.DEBUG)
+
+	#Register player with GAE at some point
+
 
 	player = SpotifyManager(options.username,options.password,True);
 	player.connect()

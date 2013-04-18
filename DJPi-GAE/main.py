@@ -168,7 +168,7 @@ class RestEngine(webapp.RequestHandler):
 				newPlayer = Player()
 				newPlayer.title = playerDict["title"]
 				newPlayer.user = userName
-				if self.request.get("replaceTracks") == "YES" or self.request.get("replaceTracks") == "":
+				if (self.request.get("replaceTracks") == "YES" or self.request.get("replaceTracks") == "") and "tracks" in playerDict:
 					newPlayer.tracks = playerDict["tracks"]
 				else:
 					newPlayer.tracks = []
