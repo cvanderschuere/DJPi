@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		834BF80A1708D8090005F8DB /* music-note.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 834BF8091708D8090005F8DB /* music-note.jpg */; };
 		83801CC91708A6F0007C0095 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83801CC81708A6F0007C0095 /* PlaylistViewController.m */; };
+		8382C2C81719E8C300EED999 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8382C2C71719E8C300EED999 /* MobileCoreServices.framework */; };
 		83BEBED21707FA6A00550849 /* PlayersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEBED11707FA6A00550849 /* PlayersTableViewController.m */; };
 		83DEC8A61704CBE300414A78 /* SPLoginResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 83DEC8A51704CBE300414A78 /* SPLoginResources.bundle */; };
 		83DEC8B81704CD2B00414A78 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83DEC8B21704CD2B00414A78 /* AVFoundation.framework */; };
@@ -77,6 +78,7 @@
 		834BF8091708D8090005F8DB /* music-note.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "music-note.jpg"; sourceTree = "<group>"; };
 		83801CC71708A6F0007C0095 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
 		83801CC81708A6F0007C0095 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
+		8382C2C71719E8C300EED999 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		83BEBED01707FA6A00550849 /* PlayersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayersTableViewController.h; sourceTree = "<group>"; };
 		83BEBED11707FA6A00550849 /* PlayersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayersTableViewController.m; sourceTree = "<group>"; };
 		83DEC8A51704CBE300414A78 /* SPLoginResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SPLoginResources.bundle; path = "../../../cocoalibspotify/iOS Library/SPLoginResources.bundle"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8382C2C81719E8C300EED999 /* MobileCoreServices.framework in Frameworks */,
 				83ED2F561707FF85009572E1 /* libCocoaLibSpotify.a in Frameworks */,
 				83ECA5FA1704B9CE00E75B14 /* UIKit.framework in Frameworks */,
 				83ECA5FC1704B9CE00E75B14 /* Foundation.framework in Frameworks */,
@@ -179,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				83ED2F5B17080289009572E1 /* AFNetworking */,
+				8382C2C71719E8C300EED999 /* MobileCoreServices.framework */,
 				83ECA5F91704B9CE00E75B14 /* UIKit.framework */,
 				83ECA5FB1704B9CE00E75B14 /* Foundation.framework */,
 				83ECA5FD1704B9CE00E75B14 /* CoreGraphics.framework */,

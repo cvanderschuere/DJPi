@@ -187,7 +187,27 @@ class RestEngine(webapp.RequestHandler):
 				currentPlayer.put()
 				self.response.out.write(json.dumps(to_dict(currentPlayer)))
 		
+	def delete(self):
+		userName = self.request.headers['username']
+		if userName == '':
+			self.response.set_status(400)
+			return #return nothing if no username passed
 			
+		if self.request.path == "/rest/player":
+			#Look if object already exists or not
+			playerTitle = self.request.get("title")
+			q = Player.gql("WHERE user = :1 AND title = :2", userName,playerTitle)
+			players = q.fetch(limit=1)
+			
+			if len(players) == 0:
+				self.response.set_status(300)
+				return
+			
+			#Delete player
+			players[0].delete()
+
+			self.response.set_status(200)
+		
 
 application = webapp.WSGIApplication([
 	('/rest/.*', RestEngine)

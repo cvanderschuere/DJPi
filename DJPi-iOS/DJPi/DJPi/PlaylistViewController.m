@@ -88,6 +88,31 @@
 -(void) refreshPlaylist:(UIRefreshControl*)sender{
     //Refresh tracks for selected player
     
+    NSString* previousPlayerTitle = [[NSUserDefaults standardUserDefaults] valueForKey:@"previousPlayer"];
+    if (previousPlayerTitle) {
+        //Populate new request
+        NSString* urlString = [[@"http://cdv-djpi.appspot.com/rest/player?title=" stringByAppendingString:previousPlayerTitle] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+        [request setValue:@"christopher.vanderschuere@gmail.com" forHTTPHeaderField:@"username"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"content-type"];
+        
+        AFJSONRequestOperation* operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+            //Use Response to reload data
+            NSDictionary* playerDict = (NSDictionary*) JSON;
+            NSArray* arrayOfPlayers = [playerDict objectForKey:@"players"];
+            if (arrayOfPlayers.count>0) {
+                self.currentPlayer = arrayOfPlayers[0]; //Setting current player will trigger all update necessary
+            }
+            
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+            NSLog(@"Error:%@ %@",error.localizedDescription,JSON);
+        }];
+        
+        AppDelegate* delegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+        [delegate.requestQueue addOperation:operation];
+    }
+
+    
     [sender endRefreshing];
 }
 #pragma mark - UICollectionView Datasource methods
@@ -96,6 +121,8 @@
 }
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"trackCell" forIndexPath:indexPath];
+    
+    
     
     return cell;
 }
