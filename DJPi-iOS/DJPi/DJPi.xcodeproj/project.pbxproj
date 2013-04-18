@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83206377171FA9320021A88D /* TrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83206376171FA9320021A88D /* TrackCell.m */; };
 		834BF80A1708D8090005F8DB /* music-note.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 834BF8091708D8090005F8DB /* music-note.jpg */; };
 		83801CC91708A6F0007C0095 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83801CC81708A6F0007C0095 /* PlaylistViewController.m */; };
 		8382C2C81719E8C300EED999 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8382C2C71719E8C300EED999 /* MobileCoreServices.framework */; };
@@ -75,6 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83206375171FA9320021A88D /* TrackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCell.h; sourceTree = "<group>"; };
+		83206376171FA9320021A88D /* TrackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCell.m; sourceTree = "<group>"; };
 		834BF8091708D8090005F8DB /* music-note.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "music-note.jpg"; sourceTree = "<group>"; };
 		83801CC71708A6F0007C0095 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
 		83801CC81708A6F0007C0095 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 			children = (
 				83ED2F4D1707FE84009572E1 /* CocoaLibSpotify iOS Library.xcodeproj */,
 				83ECA6111704B9CE00E75B14 /* MainStoryboard_iPhone.storyboard */,
+				83206375171FA9320021A88D /* TrackCell.h */,
+				83206376171FA9320021A88D /* TrackCell.m */,
 				83ECA6141704B9CE00E75B14 /* MainStoryboard_iPad.storyboard */,
 				83ED2FC717080374009572E1 /* appkey.h */,
 				83ECA6081704B9CE00E75B14 /* AppDelegate.h */,
@@ -402,6 +407,7 @@
 				83ED2FA51708028A009572E1 /* AFXMLRequestOperation.m in Sources */,
 				83ED2FA61708028A009572E1 /* UIImageView+AFNetworking.m in Sources */,
 				83801CC91708A6F0007C0095 /* PlaylistViewController.m in Sources */,
+				83206377171FA9320021A88D /* TrackCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

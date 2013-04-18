@@ -26,7 +26,7 @@ class QueueManager(threading.Thread):
 		self.username = "christopher.vanderschuere@gmail.com" #Hack for now
 		self.player = player
 		self.trackQueue = []	
-		self.name = "Kelley"	
+		self.name = "Theater Room"	
 
 	def run(self):
 		print('starting to run')

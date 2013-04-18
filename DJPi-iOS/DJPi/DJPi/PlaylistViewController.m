@@ -10,6 +10,7 @@
 #import "PlayersTableViewController.h"
 #import "TrackSearchViewController.h"
 #import "AppDelegate.h"
+#import "TrackCell.h"
 
 @interface PlaylistViewController ()
 
@@ -120,9 +121,14 @@
     return [[self.currentPlayer objectForKey:@"tracks"] count];
 }
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"trackCell" forIndexPath:indexPath];
+    TrackCell* cell = (TrackCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"trackCell" forIndexPath:indexPath];
     
+    NSString* trackString = (NSString*)[[self.currentPlayer objectForKey:@"track"] objectAtIndex:indexPath.row];
+    NSURL* trackURL = [NSURL URLWithString:trackString];
     
+    [SPTrack trackForTrackURL:trackURL inSession:[SPSession sharedSession] callback:^(SPTrack *track) {
+            cell.trackTitle.text = track.name;
+    }];
     
     return cell;
 }
