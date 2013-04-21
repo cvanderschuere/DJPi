@@ -11,5 +11,6 @@
 @interface TrackCell : UICollectionViewCell
 
 @property (nonatomic,weak) IBOutlet UILabel* trackTitle;
+@property (nonatomic,weak) IBOutlet UIImageView *albumArt;
 
 @end

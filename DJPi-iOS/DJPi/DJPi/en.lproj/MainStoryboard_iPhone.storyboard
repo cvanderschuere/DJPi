@@ -15,29 +15,30 @@
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ava-ou-DkE">
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FFx-Pj-7yU">
-                                    <size key="itemSize" width="277" height="164"/>
+                                    <size key="itemSize" width="299" height="159"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="trackCell" id="7Jc-yR-uSm" customClass="TrackCell">
-                                        <rect key="frame" x="21" y="0.0" width="277" height="164"/>
+                                        <rect key="frame" x="10" y="0.0" width="299" height="159"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="277" height="164"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="299" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="music-note.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Gal-oP-IJl">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="185" id="SDE-De-kJd"/>
+                                                        <constraint firstAttribute="height" constant="131" id="06l-S0-KPD"/>
+                                                        <constraint firstAttribute="width" constant="231" id="EIL-4g-ka9"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Someone that I used to know" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQP-fZ-xFJ">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Someone that I used to know" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QQP-fZ-xFJ">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="Dvc-Ve-o5K"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -45,14 +46,14 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="Gal-oP-IJl" firstAttribute="top" secondItem="7Jc-yR-uSm" secondAttribute="top" type="default" id="3Pf-83-EmF"/>
-                                            <constraint firstItem="QQP-fZ-xFJ" firstAttribute="leading" secondItem="7Jc-yR-uSm" secondAttribute="leading" type="default" id="FY5-Q1-QDB"/>
-                                            <constraint firstItem="Gal-oP-IJl" firstAttribute="centerX" secondItem="QQP-fZ-xFJ" secondAttribute="centerX" type="default" id="Ha7-Am-sRo"/>
-                                            <constraint firstItem="QQP-fZ-xFJ" firstAttribute="top" secondItem="Gal-oP-IJl" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="eSu-YA-Z26"/>
-                                            <constraint firstItem="QQP-fZ-xFJ" firstAttribute="bottom" secondItem="7Jc-yR-uSm" secondAttribute="bottom" type="default" id="gLY-7I-OsI"/>
-                                            <constraint firstItem="QQP-fZ-xFJ" firstAttribute="trailing" secondItem="7Jc-yR-uSm" secondAttribute="trailing" type="default" id="h2s-iW-D0W"/>
+                                            <constraint firstItem="Gal-oP-IJl" firstAttribute="top" secondItem="7Jc-yR-uSm" secondAttribute="top" type="default" id="8SV-BM-3hB"/>
+                                            <constraint firstItem="Gal-oP-IJl" firstAttribute="centerX" secondItem="7Jc-yR-uSm" secondAttribute="centerX" type="default" id="DH0-a4-5sP"/>
+                                            <constraint firstItem="Gal-oP-IJl" firstAttribute="centerX" secondItem="QQP-fZ-xFJ" secondAttribute="centerX" type="default" id="KEt-IH-bVi"/>
+                                            <constraint firstItem="QQP-fZ-xFJ" firstAttribute="bottom" secondItem="7Jc-yR-uSm" secondAttribute="bottom" type="default" id="nv5-eC-UWL"/>
+                                            <constraint firstItem="QQP-fZ-xFJ" firstAttribute="leading" secondItem="7Jc-yR-uSm" secondAttribute="leading" type="default" id="qO5-60-1nv"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="albumArt" destination="Gal-oP-IJl" id="Znw-Ol-WDY"/>
                                             <outlet property="trackTitle" destination="QQP-fZ-xFJ" id="n5l-Wo-XXg"/>
                                         </connections>
                                     </collectionViewCell>
@@ -288,6 +289,7 @@
         <class className="TrackCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TrackCell.h"/>
             <relationships>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="trackTitle" candidateClass="UILabel"/>
             </relationships>
         </class>

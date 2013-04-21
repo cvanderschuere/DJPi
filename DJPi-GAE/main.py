@@ -2,12 +2,12 @@ import cgi
 import datetime
 import urllib
 import wsgiref.handlers
-from django.utils import simplejson as json
+import json
 import logging
 
 from google.appengine.ext import db
 from google.appengine.api import users
-from google.appengine.ext import webapp
+import webapp2 as webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 
 #Create Data Models
@@ -102,7 +102,10 @@ class RestEngine(webapp.RequestHandler):
 				return
 			
 			#Output array of tracks
-			self.response.out.write(json.dumps(players[0].tracks))
+			outputDict = {
+				"tracks":players[0].tracks
+			}
+			self.response.out.write(json.dumps(outputDict))
 			
 	
 	def post(self):

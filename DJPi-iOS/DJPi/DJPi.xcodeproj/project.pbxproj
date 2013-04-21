@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		83206377171FA9320021A88D /* TrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83206376171FA9320021A88D /* TrackCell.m */; };
 		834BF80A1708D8090005F8DB /* music-note.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 834BF8091708D8090005F8DB /* music-note.jpg */; };
+		8353C139172315D2006C68D5 /* PiPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8353C138172315D2006C68D5 /* PiPlayer.m */; };
 		83801CC91708A6F0007C0095 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83801CC81708A6F0007C0095 /* PlaylistViewController.m */; };
 		8382C2C81719E8C300EED999 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8382C2C71719E8C300EED999 /* MobileCoreServices.framework */; };
 		83BEBED21707FA6A00550849 /* PlayersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEBED11707FA6A00550849 /* PlayersTableViewController.m */; };
@@ -79,6 +80,8 @@
 		83206375171FA9320021A88D /* TrackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCell.h; sourceTree = "<group>"; };
 		83206376171FA9320021A88D /* TrackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCell.m; sourceTree = "<group>"; };
 		834BF8091708D8090005F8DB /* music-note.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "music-note.jpg"; sourceTree = "<group>"; };
+		8353C137172315D2006C68D5 /* PiPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiPlayer.h; sourceTree = "<group>"; };
+		8353C138172315D2006C68D5 /* PiPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiPlayer.m; sourceTree = "<group>"; };
 		83801CC71708A6F0007C0095 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
 		83801CC81708A6F0007C0095 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
 		8382C2C71719E8C300EED999 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -147,7 +150,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8382C2C81719E8C300EED999 /* MobileCoreServices.framework in Frameworks */,
 				83ED2F561707FF85009572E1 /* libCocoaLibSpotify.a in Frameworks */,
 				83ECA5FA1704B9CE00E75B14 /* UIKit.framework in Frameworks */,
 				83ECA5FC1704B9CE00E75B14 /* Foundation.framework in Frameworks */,
@@ -158,6 +160,7 @@
 				83DEC8BB1704CD2B00414A78 /* libstdc++.dylib in Frameworks */,
 				83DEC8BC1704CD2B00414A78 /* CFNetwork.framework in Frameworks */,
 				83DEC8BD1704CD2B00414A78 /* SystemConfiguration.framework in Frameworks */,
+				8382C2C81719E8C300EED999 /* MobileCoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +215,8 @@
 				83ECA6091704B9CE00E75B14 /* AppDelegate.m */,
 				83801CC71708A6F0007C0095 /* PlaylistViewController.h */,
 				83801CC81708A6F0007C0095 /* PlaylistViewController.m */,
+				8353C137172315D2006C68D5 /* PiPlayer.h */,
+				8353C138172315D2006C68D5 /* PiPlayer.m */,
 				83BEBED01707FA6A00550849 /* PlayersTableViewController.h */,
 				83BEBED11707FA6A00550849 /* PlayersTableViewController.m */,
 				83E2FCF21704D13F00C10B5E /* TrackSearchViewController.h */,
@@ -408,6 +413,7 @@
 				83ED2FA61708028A009572E1 /* UIImageView+AFNetworking.m in Sources */,
 				83801CC91708A6F0007C0095 /* PlaylistViewController.m in Sources */,
 				83206377171FA9320021A88D /* TrackCell.m in Sources */,
+				8353C139172315D2006C68D5 /* PiPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

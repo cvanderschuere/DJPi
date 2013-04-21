@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PiPlayer.h"
 
 @interface PlaylistViewController : UIViewController <UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 
-@property (nonatomic,strong) NSDictionary *currentPlayer;
+@property (nonatomic,strong) PiPlayer *currentPlayer;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *playerButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
