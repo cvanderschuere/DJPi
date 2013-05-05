@@ -53,9 +53,9 @@ Building the player is written with a Raspberry Pi and Arch Linux in mind, but t
 6. Test pkg export with 'pkg-config --print-provides libspotify' (Should output that library found with correct version number)
 8. Clone this repo to /home 'git --recursive clone <repo url>' 
 9. Init pyspotify library 'python2 setup.py install'
-10. Download Spotify app keys from http://developer.spotify.com and place in DJPi-RaspberryPi/
- * Should be named spotify_appkey.key
- * Put the c code into the iOS folder
+10. Download Spotify app keys from http://developer.spotify.com
+ * Raspberry-Pi: Download binary key and place in DJPi-RaspberryPi/ (Should be named spotify_appkey.key)
+ * iOS: Copy c code into a file appkey.h and place in DJPi-iOS/ 
 
 Spotify
 =======
