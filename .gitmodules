@@ -1,9 +1,9 @@
 [submodule "AFNetworking"]
 	path = AFNetworking
-	url = git@github.com:AFNetworking/AFNetworking.git
+	url = https://github.com/AFNetworking/AFNetworking.git
 [submodule "cocoalibspotify"]
 	path = cocoalibspotify
-	url = git@github.com:spotify/cocoalibspotify.git
+	url = https://github.com/spotify/cocoalibspotify.git
 [submodule "pyspotify"]
 	path = pyspotify
 	url = https://github.com/mopidy/pyspotify.git
