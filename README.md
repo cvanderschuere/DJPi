@@ -9,7 +9,7 @@ DJPi is designed to be easily duplicatable. Following a few steps should allow y
 
 1.  Deploy DJPi-GAE server code to a Google App Engine instance (You must register and create your own)
 2.  Modify base url in project to match your specific app engine url. Example: *XXXXX.appspot.com*
-3.  Start DJPi-Pi code on Raspberry Pi with options `-u spotify.email@domain.com -t titleOfThisPlayer` to register player
+3.  Start DJPi-Pi code on Raspberry Pi with options `python2 djpi.py -u spotify.email@domain.com -t titleOfThisPlayer` to register player
 4.  Build and run iOS app to add/remove songs from a player's queue (Don't forget about your appkey.h)
 5.  Relax and enjoy the music!
 
