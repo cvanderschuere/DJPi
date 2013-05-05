@@ -44,7 +44,7 @@ class QueueManager(threading.Thread):
 		urls = json.load(r)
 
 		#Load all new urls
-		self.trackQueue = urls;
+		self.trackQueue = urls['tracks'];
 
 		if not self.player.playing and not self.player.loading:
 			self.player.next()
