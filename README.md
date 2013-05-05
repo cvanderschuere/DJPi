@@ -9,7 +9,7 @@ DJPi is designed to be easily duplicatable. Following a few steps should allow y
 
 1.  Deploy DJPi-GAE server code to a Google App Engine instance (You must register and create your own)
 2.  Modify base url in project to match your specific app engine url. Example: *XXXXX.appspot.com*
-3.  Start DJPi-Pi code on Raspberry Pi with options `python2 djpi.py -u spotify.email@domain.com -t titleOfThisPlayer` to register player
+3.  Start DJPi-Pi code on Raspberry Pi with options `python2 djpi.py -u spotify.email@domain.com -p passwordForSpotifyAccount  -n titleOfThisPlayer` to register player
 4.  Build and run iOS app to add/remove songs from a player's queue (Don't forget about your appkey.h)
 5.  Relax and enjoy the music!
 
@@ -25,7 +25,7 @@ iOS
 ---
 This project uses two submodules (AFNetworking & CocoaLibSpotify)
 
-* On inital clone use `git clone --recursive <insert url>` to also clone the submodules
+* On inital clone use `git clone --recursive https://github.com/cvanderschuere/DJPi.git` to also clone the submodules
 * If you do not have the '--recursive' option:
 * `git clone https://github.com/cvanderschuere/DJPi.git && cd DJPi && git submodule init && git submodule update`
 
@@ -51,7 +51,8 @@ Building the player is written with a Raspberry Pi and Arch Linux in mind, but t
 4. Copy latest libspotify from http://developer.spotify.com to home directory
 5. Run 'make prefix=/usr install'
 6. Test pkg export with 'pkg-config --print-provides libspotify' (Should output that library found with correct version number)
-8. Clone this repo to /home 'git --recursive clone <repo url>' 
+8. Clone this repo to /home 'git -r clone https://github.com/cvanderschuere/DJPi.git' 
+* If you do not have the '-r' option: `git clone https://github.com/cvanderschuere/DJPi.git && cd DJPi && git submodule init && git submodule update`
 9. Init pyspotify library 'python2 setup.py install'
 10. Download Spotify app keys from http://developer.spotify.com
  * Raspberry-Pi: Download binary key and place in DJPi-RaspberryPi/ (Should be named spotify_appkey.key)
