@@ -27,7 +27,7 @@ This project uses two submodules (AFNetworking & CocoaLibSpotify)
 
 * On inital clone use `git clone --recursive <insert url>` to also clone the submodules
 * If you do not have the '--recursive' option:
-* `git clone <insert url> && cd DJPi && git submodule init && git submodule update`
+* `git clone https://github.com/cvanderschuere/DJPi.git && cd DJPi && git submodule init && git submodule update`
 
 * If you have already cloned the repo, you can use `git submodule --init` to achieve the same effect
 
